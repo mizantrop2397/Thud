@@ -21,16 +21,27 @@ class PlayerService extends Actor {
     }
   }
 
-  private def processDwarfMovement(unit: GameUnit): Unit = ???
+  private def processDwarfMovement(unit: GameUnit): Unit = {
 
-  private def processTrollMovement(unit: GameUnit): Unit = ???
+  }
 
-  private def processDwarfAttack(controllingUnit: GameUnit, attackedUnit: GameUnit): Unit = ???
+  private def processTrollMovement(unit: GameUnit): Unit = {
 
-  private def processTrollAttack(controllingUnit: GameUnit, attackedUnit: GameUnit): Unit = ???
+  }
 
-  private def calculateDwarfMovement(unit: GameUnit): Unit = ???
+  private def processDwarfAttack(controllingUnit: GameUnit, attackedUnit: GameUnit): Unit = {
 
-  private def calculateTrollMovement(unit: GameUnit): Unit = ???
+  }
+
+  private def processTrollAttack(controllingUnit: GameUnit, attackedUnit: GameUnit): Unit = {
+
+  }
+
+  private def calculateDwarfMovement(unit: GameUnit): Unit = {
+  }
+
+  private def calculateTrollMovement(unit: GameUnit): Unit = {
+
+  }
 }
 

@@ -1,4 +1,4 @@
-package ru.mirea.thud.server.server
+package ru.mirea.thud.server.app
 
 import akka.actor.ActorSystem.create
 import akka.actor.Props

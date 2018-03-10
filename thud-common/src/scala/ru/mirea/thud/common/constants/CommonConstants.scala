@@ -2,8 +2,8 @@ package ru.mirea.thud.common.constants
 
 object CommonConstants {
   val EMPTY_STRING = ""
-  val PLAYER_CONTROLLER_ACTOR = "PlayerController"
-  val GAME_CONTROLLER_ACTOR = "GameController"
+  val PLAYER_SERVICE_ACTOR = "PlayerService"
+  val GAME_SERVICE_ACTOR = "GameService"
   val SERVER_ACTOR_SYSTEM = "ThudServer"
   val CLIENT_ACTOR_SYSTEM = "ThudClient"
 }

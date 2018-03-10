@@ -2,8 +2,8 @@ package ru.mirea.thud.server.controller
 
 import akka.actor.Actor
 
-class GameController extends Actor {
+class GameService extends Actor {
   override def receive: Receive = {
-    case _ =>
+    case _ => ???
   }
 }

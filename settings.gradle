@@ -1,0 +1,3 @@
+include 'thud-common'
+include 'thud-server'
+include 'thud-client'

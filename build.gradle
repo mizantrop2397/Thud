@@ -1,0 +1,43 @@
+group 'ru.mirea.thud'
+version '1.0'
+
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'scala'
+
+    sourceSets {
+        main {
+            scala {
+                srcDirs = ['src/scala']
+            }
+        }
+        test {
+            scala {
+                srcDirs = ['test/scala']
+            }
+        }
+    }
+
+    idea {
+        module {
+            inheritOutputDirs = false
+            outputDir = compileJava.destinationDir
+            testOutputDir = compileTestJava.destinationDir
+        }
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    dependencies {
+        compile 'org.scala-lang:scala-library:2.11.8'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    task wrapper(type: Wrapper) {
+        gradleVersion = "4.3"
+    }
+}

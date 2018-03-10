@@ -30,7 +30,7 @@ allprojects {
     targetCompatibility = 1.8
 
     dependencies {
-        compile 'org.scala-lang:scala-library:2.11.8'
+        compile group: 'org.scala-lang', name: 'scala-library', version: '2.11.8'
         compile group: 'com.typesafe.akka', name: 'akka-actor_2.12', version: '2.5.11'
     }
 

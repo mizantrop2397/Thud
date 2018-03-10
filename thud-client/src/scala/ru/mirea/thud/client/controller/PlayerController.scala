@@ -6,18 +6,6 @@ import ru.mirea.thud.client.model.GameUnit
 import ru.mirea.thud.client.model.messages.{AttackMessage, CalculateMovementSchemeMessage, MovementMessage}
 
 class PlayerController extends Actor {
-  def processDwarfMovement(unit: GameUnit): Unit = ???
-
-  def processTrollMovement(unit: GameUnit): Unit = ???
-
-  def processDwarfAttack(controllingUnit: GameUnit, attackedUnit: GameUnit): Unit = ???
-
-  def processTrollAttack(controllingUnit: GameUnit, attackedUnit: GameUnit): Unit = ???
-
-  def calculateDwarfMovement(unit: GameUnit): Unit = ???
-
-  def calculateTrollMovement(unit: GameUnit): Unit = ???
-
   override def receive: Receive = {
     case CalculateMovementSchemeMessage(unit) => unit.unitType match {
       case DWARF => calculateDwarfMovement(unit)
@@ -32,4 +20,16 @@ class PlayerController extends Actor {
       case TROLL => processTrollAttack(controllingUnit, attackedUnit)
     }
   }
+
+  private def processDwarfMovement(unit: GameUnit): Unit = ???
+
+  private def processTrollMovement(unit: GameUnit): Unit = ???
+
+  private def processDwarfAttack(controllingUnit: GameUnit, attackedUnit: GameUnit): Unit = ???
+
+  private def processTrollAttack(controllingUnit: GameUnit, attackedUnit: GameUnit): Unit = ???
+
+  private def calculateDwarfMovement(unit: GameUnit): Unit = ???
+
+  private def calculateTrollMovement(unit: GameUnit): Unit = ???
 }

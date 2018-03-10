@@ -1,7 +1,7 @@
 package ru.mirea.thud.client.controller
 
 import akka.actor.Actor
-import ru.mirea.thud.client.constants.GameUnitType.{DWARF, TROLL}
+import ru.mirea.thud.client.constants.PlayerRole.{DWARF, TROLL}
 import ru.mirea.thud.client.model.GameUnit
 import ru.mirea.thud.client.model.messages.{AttackMessage, CalculateMovementSchemeMessage, MovementMessage}
 

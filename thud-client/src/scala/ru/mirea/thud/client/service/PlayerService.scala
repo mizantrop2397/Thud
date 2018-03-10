@@ -1,11 +1,11 @@
-package ru.mirea.thud.client.controller
+package ru.mirea.thud.client.service
 
 import akka.actor.Actor
 import ru.mirea.thud.client.constants.PlayerRole.{DWARF, TROLL}
 import ru.mirea.thud.client.model.GameUnit
 import ru.mirea.thud.client.model.messages.{AttackMessage, CalculateMovementSchemeMessage, MovementMessage}
 
-class PlayerController extends Actor {
+class PlayerService extends Actor {
   override def receive: Receive = {
     case CalculateMovementSchemeMessage(unit) => unit.unitType match {
       case DWARF => calculateDwarfMovement(unit)

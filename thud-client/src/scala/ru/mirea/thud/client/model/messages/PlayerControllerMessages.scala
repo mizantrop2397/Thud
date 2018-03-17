@@ -1,9 +1,9 @@
 package ru.mirea.thud.client.model.messages
 
-import ru.mirea.thud.client.model.GameUnit
+import ru.mirea.thud.client.model.FieldUnit
 
-case class CalculateMovementSchemeMessage(controllingUnit: GameUnit)
+case class CalculateMovementSchemeMessage(controllingUnit: FieldUnit)
 
-case class MovementMessage(controllingUnit: GameUnit)
+case class MovementMessage(controllingUnit: FieldUnit, newCell: FieldUnit)
 
-case class AttackMessage(controllingUnit: GameUnit, attackedUnit: GameUnit)
+case class AttackMessage(attackedUnit: FieldUnit)

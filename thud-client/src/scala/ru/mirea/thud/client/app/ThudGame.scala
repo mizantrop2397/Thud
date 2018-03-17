@@ -18,4 +18,5 @@ object ThudGame extends App {
   println(s"Created player controller actor: $playerController")
   println(s"Created field controller actor: $fieldController")
   println("ThudGame app started")
+
 }

@@ -1,9 +1,9 @@
 package ru.mirea.thud.client.service
 
 import akka.actor.Actor
-import ru.mirea.thud.client.constants.PlayerRole.{DWARF, TROLL}
-import ru.mirea.thud.client.model.{GameUnit, Location}
 import ru.mirea.thud.client.model.messages.{AttackMessage, CalculateMovementSchemeMessage, MovementMessage}
+import ru.mirea.thud.common.constants.PlayerRole.{DWARF, TROLL}
+import ru.mirea.thud.common.model.GameUnit
 
 class PlayerService extends Actor {
   override def receive: Receive = {

@@ -1,6 +1,6 @@
 package ru.mirea.thud.client.model.messages
 
-import ru.mirea.thud.client.model.GameUnit
+import ru.mirea.thud.common.model.GameUnit
 
 case class CalculateMovementSchemeMessage(controllingUnit: GameUnit)
 

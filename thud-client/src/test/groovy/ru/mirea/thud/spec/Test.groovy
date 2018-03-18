@@ -2,14 +2,14 @@ package ru.mirea.thud.spec
 
 import akka.actor.ActorSystem
 import akka.actor.Props
-import ru.mirea.thud.client.constants.PlayerRole$
-import ru.mirea.thud.client.model.GameUnit
 import ru.mirea.thud.client.model.messages.CalculateMovementSchemeMessage
 import ru.mirea.thud.client.service.PlayerService
+import ru.mirea.thud.common.constants.PlayerRole$
+import ru.mirea.thud.common.model.GameUnit
 import spock.lang.Shared
 import spock.lang.Specification
 
-import static akka.actor.ActorRef.*
+import static akka.actor.ActorRef.noSender
 
 class Test extends Specification {
     @Shared actorSystem = ActorSystem.create("TestSystem")

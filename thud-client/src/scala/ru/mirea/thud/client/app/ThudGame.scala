@@ -5,6 +5,7 @@ import akka.actor.{ActorSelection, Props}
 import ru.mirea.thud.client.constants.ClientConstants._
 import ru.mirea.thud.client.service.PlayerService
 import ru.mirea.thud.common.constants.CommonConstants._
+import ru.mirea.thud.common.path.Paths.serverActorPath
 
 object ThudGame extends App {
   private val actorSystem = create(CLIENT_ACTOR_SYSTEM)
@@ -12,10 +13,12 @@ object ThudGame extends App {
   val fieldController = actorSystem actorOf(Props[PlayerService], FIELD_CONTROLLER_ACTOR)
 
   def gameController: ActorSelection = {
-    actorSystem actorSelection GAME_SERVICE_ACTOR
+    actorSystem actorSelection serverActorPath(GAME_SERVICE_ACTOR)
   }
 
   println(s"Created player controller actor: $playerController")
   println(s"Created field controller actor: $fieldController")
   println("ThudGame app started")
+
+  gameController ! PlayerConnectionMessage("Test")
 }

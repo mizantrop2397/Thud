@@ -60,7 +60,7 @@ class GameService extends Actor {
 
   def disconnectPlayer(sessionId: String, playerId: String): Unit = {
     val enemyPlayer = sessions(sessionId) getEnemyPlayer playerId
-    clientPlayerService(enemyPlayer.connectionInfo.port, enemyPlayer.connectionInfo.host) ! EnemyPlayerDisconnectionMessage()
     sessions -= sessionId
+    clientPlayerService(enemyPlayer.connectionInfo.port, enemyPlayer.connectionInfo.host) ! EnemyPlayerDisconnectionMessage()
   }
 }

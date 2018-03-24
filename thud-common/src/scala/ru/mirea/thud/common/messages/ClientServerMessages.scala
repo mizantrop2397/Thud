@@ -1,11 +1,13 @@
 package ru.mirea.thud.common.messages
 
-case class ClientServerMessages()
+import ru.mirea.thud.common.model.PlayerConnectionInfo
 
-case class PlayerConnectionMessage(playerName: String)
+case class PlayerConnectionMessage(info : PlayerConnectionInfo)
 
-case class PlayerDisconnectionMessage(playerName: String)
+case class PlayerDisconnectionMessage(sessionId: String)
 
 case class PlayerActionNotificationMessage()
 
-case class DrawOfferingMessage()
+case class DrawOfferingMessageToServer(sessionId: String, playerId: String)
+
+case class DrawOfferingMessageToClient()

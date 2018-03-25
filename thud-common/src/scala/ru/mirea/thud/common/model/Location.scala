@@ -1,3 +1,3 @@
-package ru.mirea.thud.client.model
+package ru.mirea.thud.common.model
 
 case class Location(x: Int, y: Int)

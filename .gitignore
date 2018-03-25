@@ -47,5 +47,6 @@ gradle-wrapper.jar
 gradle-wrapper.properties
 gradlew
 gradlew.bat
-.idea/
 *.iml
+*.class
+build.properties

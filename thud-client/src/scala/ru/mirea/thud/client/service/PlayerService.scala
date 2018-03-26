@@ -1,25 +1,33 @@
 package ru.mirea.thud.client.service
 
+import java.util
+
 import akka.actor.Actor
+import ru.mirea.thud.client.constants.CellTargetMode
+import ru.mirea.thud.client.constants.CellTargetMode.DEFAULT
 import ru.mirea.thud.client.constants.FieldCellType._
 import ru.mirea.thud.client.model.FieldUnit
-import ru.mirea.thud.client.model.messages.{AttackMessage, CalculateMovementSchemeMessage, MovementMessage}
+import ru.mirea.thud.client.model.messages.{AttackMessage, CalculateMovementSchemeMessage, HighlightCellsMessage, MovementMessage}
+import ru.mirea.thud.common.model.Location
 
 class PlayerService extends Actor {
-  var troll : TrollService = new TrollService
-  var dwarf : DwarfService = new DwarfService
   override def receive: Receive = {
 
     case CalculateMovementSchemeMessage(unit) => unit.cellType match {
-      case DWARF => dwarf.calculateDwarfMovement(unit)
-      case TROLL => troll.calculateTrollMovement(unit)
+      case DWARF => DwarfService.calculateDwarfMovement(unit)
+      case TROLL => TrollService.calculateTrollMovement(unit)
     }
+
     case MovementMessage(unit, newCell) =>
       processMovement(unit, newCell)
+      unit.cellType match {
+        case DWARF => //TODO: Миша, это твое! Пиши давай, ленивая задница, а то сожгу!
+        case TROLL => setHighlightedCellsToDefault(TrollService.getCellsToHighlightAttack, TrollService.getCellsToHighlightMove)
+      }
 
     case AttackMessage(attackedUnit) => attackedUnit.cellType match {
-      case DWARF => dwarf.processDwarfAttack(attackedUnit)
-      case TROLL => troll.processTrollAttack(attackedUnit)
+      case DWARF => DwarfService.processDwarfAttack(attackedUnit)
+      case TROLL => TrollService.processTrollAttack(attackedUnit)
     }
   }
 
@@ -30,25 +38,21 @@ class PlayerService extends Actor {
     unit.location.copy(newCell.location.x, newCell.location.y)
   }
 
-
-  protected def isCellEmpty(cell: FieldUnit): Boolean ={
-    cell.cellType.equals(EMPTY)
+  /*
+  Convert ArrayList to Map [Location, CellTargetMode]
+*/
+  protected def addToMap(fieldUnit: util.ArrayList[FieldUnit], cellTargetMode: CellTargetMode.Value): Unit = {
+    var map : Map[Location, CellTargetMode.Value] = Map()
+    for (i <- 0 to fieldUnit.size())
+    {
+      map += (fieldUnit.get(i).location -> cellTargetMode)
+    }
+    HighlightCellsMessage (map)
   }
 
-  protected def isCellOut(cell: FieldUnit): Boolean ={
-    cell.cellType.equals(OUT)
-  }
-
-  protected def isCellDwarf(cell: FieldUnit): Boolean ={
-    cell.cellType.equals(DWARF)
-  }
-
-  protected def isCellTroll(cell: FieldUnit): Boolean ={
-    cell.cellType.equals(TROLL)
-  }
-
-  protected def isCellRock(cell: FieldUnit): Boolean ={
-    cell.cellType.equals(ROCK)
+  protected def setHighlightedCellsToDefault(arrayToAttack: util.ArrayList[FieldUnit], arrayToMove: util.ArrayList[FieldUnit]): Unit = {
+    addToMap(arrayToAttack, DEFAULT)
+    addToMap(arrayToMove, DEFAULT)
   }
 }
 

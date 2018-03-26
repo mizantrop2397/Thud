@@ -3,7 +3,7 @@ package ru.mirea.thud.client.service
 import ru.mirea.thud.client.model.FieldUnit
 
 
-class DwarfService extends PlayerService{
+object DwarfService{
 
   def calculateDwarfMovement(unit: FieldUnit): Unit = {
 

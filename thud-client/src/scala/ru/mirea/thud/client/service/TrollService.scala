@@ -2,8 +2,12 @@ package ru.mirea.thud.client.service
 
 import java.util
 
-import ru.mirea.thud.client.model.FieldUnit
+import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.constants.FieldCellType.{DWARF, EMPTY, TROLL}
+import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, MOVE}
+import ru.mirea.thud.client.model.messages.HighlightCellsMessage
+import ru.mirea.thud.client.model.{Cell, FieldUnit}
+import ru.mirea.thud.common.model.Location
 
 /*
 Order of neighbors in list (numbers = indexes)
@@ -11,14 +15,28 @@ Order of neighbors in list (numbers = indexes)
 3  X  1
 7  2  6
 */
-class TrollService extends PlayerService{
+object TrollService{
+
+  private var cellsToHighlightAttack = new util.ArrayList[FieldUnit]
+  private var cellsToHighlightMove = new util.ArrayList[FieldUnit]
+
+
+  def getCellsToHighlightAttack: util.ArrayList[FieldUnit] = {
+    cellsToHighlightAttack
+  }
+
+  def getCellsToHighlightMove: util.ArrayList[FieldUnit] = {
+    cellsToHighlightMove
+  }
 
   /*
     Calculate possible moves
   */
   def calculateTrollMovement(controllingUnit: FieldUnit): Unit = {
-    checkForTrollsAttack(controllingUnit)
-    checkForTrollsMovement(controllingUnit)
+    cellsToHighlightAttack = checkForTrollsAttack(controllingUnit)
+    addToMap(cellsToHighlightAttack, ATTACK)
+    cellsToHighlightMove = checkForTrollsMovement(controllingUnit)
+    addToMap(cellsToHighlightMove, MOVE)
   }
 
  /*
@@ -31,7 +49,7 @@ class TrollService extends PlayerService{
       i => {
         var count = 0
         val neighbor = controllingUnit.neighbors(i)
-        if (isCellTroll(neighbor) && ((i < 2 && controllingUnit.neighbors(i+2).cellType.equals(TROLL)) && (i > 2 && controllingUnit.neighbors(i-2).cellType.equals(TROLL)))){
+        if (Cell.isCellTroll(neighbor) && ((i < 2 && controllingUnit.neighbors(i+2).cellType.equals(TROLL)) && (i > 2 && controllingUnit.neighbors(i-2).cellType.equals(TROLL)))){
           count = countLineLength(neighbor, i)
         }
         var index = i
@@ -62,6 +80,18 @@ class TrollService extends PlayerService{
   }
 
   /*
+    Convert ArrayList to Map [Location, CellTargetMode]
+  */
+  private def addToMap(fieldUnit: util.ArrayList[FieldUnit], cellTargetMode: CellTargetMode.Value): Unit = {
+      var map : Map[Location, CellTargetMode.Value] = Map()
+        for (i <- 0 to fieldUnit.size())
+        {
+          map += (fieldUnit.get(i).location -> cellTargetMode)
+        }
+      HighlightCellsMessage (map)
+  }
+
+  /*
     Check cells for movement possibility
       return ArrayList
   */
@@ -70,7 +100,7 @@ class TrollService extends PlayerService{
     (4 to 7).foreach{
       i => {
         val neighbor = controllingUnit.neighbors(i)
-        if (isCellEmpty(neighbor)){
+        if (Cell.isCellEmpty(neighbor)){
           possibleCells.add(neighbor)
         }
       }
@@ -78,14 +108,13 @@ class TrollService extends PlayerService{
     possibleCells
   }
 
-
   /*
     Setting cells with dwarfs to empty and notify other player
   */
   def processTrollAttack(selectedCell: FieldUnit): Unit = {
     var dwarfsToKill = new util.ArrayList[FieldUnit]()
     for (neighbor <- selectedCell.neighbors if neighbor.cellType.equals(DWARF)) {
-      //neighbor.cellType = EMPTY - хз почему не работает, я тупенькая
+      neighbor.cellType = EMPTY
       dwarfsToKill.add(neighbor)
     }
     if (!dwarfsToKill.isEmpty){

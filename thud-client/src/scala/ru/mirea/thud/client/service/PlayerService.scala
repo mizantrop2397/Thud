@@ -1,22 +1,21 @@
 package ru.mirea.thud.client.service
 
 import java.util
+
+import java.util
 import java.util.stream.Collectors
 
 import akka.actor.Actor
-import ru.mirea.thud.client.app.ThudGame
+import ru.mirea.thud.client.constants.CellTargetMode
+import ru.mirea.thud.client.constants.CellTargetMode.DEFAULT
 import ru.mirea.thud.client.constants.FieldCellType._
 import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.constants.CellTargetMode.DEFAULT
 import ru.mirea.thud.common.constants.FieldCellType._
 import ru.mirea.thud.client.model.FieldUnit
-import ru.mirea.thud.client.model.messages._
+import ru.mirea.thud.client.model.messages.{AttackMessage, CalculateMovementSchemeMessage, HighlightCellsMessage, MovementMessage}
+import ru.mirea.thud.common.model.Location
 
-/**
-  * Review:
-  * 1. Почему все protected? Можно ж private
-  * 2. А почему нельзя сделать для fieldController-а сообщение ResetHighlightedCells вместо вызова  HighlightCellsMessage с дефолтными параметарми
-  */
 class PlayerService extends Actor {
   def action : CommonUnitActions = new CommonUnitActions()
 
@@ -30,11 +29,13 @@ class PlayerService extends Actor {
       processMovement(unit, newCell)
       unit.cellType match {
         case DWARF => //TODO: Миша, это твое! Пиши давай, ленивая задница, а то сожгу!
-        case TROLL => setHighlightedCellsToDefault(TrollService.getCellsToHighlightAttack, TrollService.getCellsToHighlightMove) // Review. Предлагаю переименовать в 'resetHighlightedCells'
+        case TROLL =>
+          ThudGame.gameController ! MoveFiguresMessage(unit, newCell)
+          action.setHighlightedCellsToDefault(TrollService.getCellsToHighlightAttack, TrollService.getCellsToHighlightMove)
       }
 
     case PerformAttackMessage(attackedUnit) => attackedUnit.cellType match {
-      case DWARF => DwarfService.processAttack(attackedUnit)
+      case DWARF => DwarfService.processDwarfAttack(attackedUnit)
       case TROLL => TrollService.processTrollAttack(attackedUnit)
     }
   }

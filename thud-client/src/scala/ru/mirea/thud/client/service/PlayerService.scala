@@ -5,7 +5,7 @@ import java.util
 import akka.actor.Actor
 import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.constants.CellTargetMode.DEFAULT
-import ru.mirea.thud.client.constants.FieldCellType._
+import ru.mirea.thud.common.constants.FieldCellType._
 import ru.mirea.thud.client.model.FieldUnit
 import ru.mirea.thud.client.model.messages.{AttackMessage, CalculateMovementSchemeMessage, HighlightCellsMessage, MovementMessage}
 import ru.mirea.thud.common.model.Location

@@ -3,7 +3,7 @@ package ru.mirea.thud.client.service
 import java.util
 
 import ru.mirea.thud.client.constants.CellTargetMode
-import ru.mirea.thud.client.constants.FieldCellType.{DWARF, EMPTY, TROLL}
+import ru.mirea.thud.common.constants.FieldCellType.{DWARF, EMPTY, TROLL}
 import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, MOVE}
 import ru.mirea.thud.client.model.messages.HighlightCellsMessage
 import ru.mirea.thud.client.model.{Cell, FieldUnit}

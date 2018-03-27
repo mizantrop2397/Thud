@@ -1,3 +1,5 @@
 package ru.mirea.thud.common.model
 
-case class GameField(units: Map[Location, GameUnit] = Map())
+import ru.mirea.thud.common.constants.FieldCellType
+
+case class GameField(units: Map[Location, FieldCellType.Value] = Map())

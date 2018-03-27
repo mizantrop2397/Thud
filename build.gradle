@@ -25,6 +25,7 @@ allprojects {
 
 
     idea {
+        targetVersion = "13"
         module {
             inheritOutputDirs = false
             outputDir = compileJava.destinationDir

@@ -12,7 +12,6 @@ import ru.mirea.thud.common.path.Paths.serverActorPath
 
 object ThudGame extends App {
   private val actorSystem = create(CLIENT_ACTOR_SYSTEM)
-  private val remoteConfig: Config = actorSystem.settings.config.getConfig("akka.remote.netty.tcp")
   val playerController = actorSystem actorOf(Props[PlayerService], PLAYER_SERVICE_ACTOR)
   val fieldController = actorSystem actorOf(Props[PlayerService], FIELD_CONTROLLER_ACTOR)
 
@@ -20,8 +19,7 @@ object ThudGame extends App {
   println(s"Created field controller actor: $fieldController")
   println("ThudGame app started")
 
-  def gameController: ActorSelection = {
-    actorSystem actorSelection serverActorPath(GAME_SERVICE_ACTOR)
-  }
-  gameController ! PlayerConnectionServerMessage(PlayerConnectionInfo("Test", remoteConfig.getString("hostname"), remoteConfig.getInt("port")))
+  def gameController: ActorSelection = actorSystem actorSelection serverActorPath(GAME_SERVICE_ACTOR)
+
+  def config = actorSystem.settings.config
 }

@@ -16,10 +16,11 @@ Order of neighbors in list (numbers = indexes)
 7  2  6
 */
 object TrollService {
+  /**  Review. Для чего используются эти свойства кроме как setHighlightedCellsToDefault ? **/
   private var cellsToHighlightAttack = new util.ArrayList[FieldUnit]
   private var cellsToHighlightMove = new util.ArrayList[FieldUnit]
 
-  def getCellsToHighlightAttack: util.ArrayList[FieldUnit] = {
+  def getCellsToHighlightAttack: util.ArrayList[FieldUnit] = { // Review. Можно короче:   def getCellsToHighlightAttack: util.ArrayList[FieldUnit] = cellsToHighlightAttack
     cellsToHighlightAttack
   }
 
@@ -38,11 +39,25 @@ object TrollService {
   }
 
   /*
+    Setting cells with dwarfs to empty and notify other player
+  */
+  def processTrollAttack(selectedCell: FieldUnit): Unit = {
+    val dwarfsToKill = new util.ArrayList[FieldUnit]()
+    for (neighbor <- selectedCell.neighbors if neighbor.cellType.equals(DWARF)) {
+      neighbor.cellType = EMPTY
+      dwarfsToKill.add(neighbor)
+    }
+    if (!dwarfsToKill.isEmpty) {
+      //send message
+    }
+  }
+
+  /*
      Check cells for attack possibility
        return ArrayList
   */
   private def checkForTrollsAttack(controllingUnit: FieldUnit): util.ArrayList[FieldUnit] = {
-    var possibleCells = new util.ArrayList[FieldUnit]()
+    val possibleCells = new util.ArrayList[FieldUnit]()
     (0 to 3).foreach {
       i => {
         var count = 0
@@ -85,7 +100,7 @@ object TrollService {
     for (i <- 0 to fieldUnit.size()) {
       map += (fieldUnit.get(i).location -> cellTargetMode)
     }
-    HighlightCellsMessage(map)
+    HighlightCellsMessage(map) // Review. Забыли контроллер
   }
 
   /*
@@ -93,7 +108,7 @@ object TrollService {
       return ArrayList
   */
   private def checkForTrollsMovement(controllingUnit: FieldUnit): util.ArrayList[FieldUnit] = {
-    var possibleCells = new util.ArrayList[FieldUnit]()
+    val possibleCells = new util.ArrayList[FieldUnit]()
     (4 to 7).foreach {
       i => {
         val neighbor = controllingUnit.neighbors(i)
@@ -103,19 +118,5 @@ object TrollService {
       }
     }
     possibleCells
-  }
-
-  /*
-    Setting cells with dwarfs to empty and notify other player
-  */
-  def processTrollAttack(selectedCell: FieldUnit): Unit = {
-    var dwarfsToKill = new util.ArrayList[FieldUnit]()
-    for (neighbor <- selectedCell.neighbors if neighbor.cellType.equals(DWARF)) {
-      neighbor.cellType = EMPTY
-      dwarfsToKill.add(neighbor)
-    }
-    if (!dwarfsToKill.isEmpty) {
-      //send message
-    }
   }
 }

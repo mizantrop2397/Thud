@@ -10,7 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1099.0" styleClass="background" stylesheets="@Field.css" xmlns="http://javafx.com/javafx/8" fx:controller="GameScreenController" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1099.0" styleClass="background" stylesheets="@Field.css" xmlns="http://javafx.com/javafx/8" fx:controller="FieldView" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutX="35.0" layoutY="23.0" prefHeight="577.0" prefWidth="585.0" stylesheets="@Field.css">
          <children>
@@ -588,7 +588,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button layoutX="1038.0" layoutY="6.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="51.0" text="?" />
+      <Button fx:id="helpButton" layoutX="1038.0" layoutY="6.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="51.0" text="?" onAction="#showHelpButton" />
       <Label fx:id="firstPlayerTotalScore2" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="130.0">
          <font>
             <Font name="System Bold" size="21.0" />

@@ -2,10 +2,11 @@ package ru.mirea.thud.client.service
 
 import java.util
 
+import ru.mirea.thud.client.app.ThudGame
 import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.constants.FieldCellType.{DWARF, EMPTY, TROLL}
 import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, MOVE}
-import ru.mirea.thud.client.model.messages.HighlightCellsMessage
+import ru.mirea.thud.client.model.messages.{DeleteFiguresMessage, HighlightCellsMessage, DeleteFiguresMessage}
 import ru.mirea.thud.client.model.{Cell, FieldUnit}
 import ru.mirea.thud.common.model.Location
 
@@ -20,23 +21,18 @@ object TrollService{
   private var cellsToHighlightAttack = new util.ArrayList[FieldUnit]
   private var cellsToHighlightMove = new util.ArrayList[FieldUnit]
 
-
-  def getCellsToHighlightAttack: util.ArrayList[FieldUnit] = {
-    cellsToHighlightAttack
-  }
-
-  def getCellsToHighlightMove: util.ArrayList[FieldUnit] = {
-    cellsToHighlightMove
-  }
-
+  def getCellsToHighlightAttack: util.ArrayList[FieldUnit] = cellsToHighlightAttack
+  def getCellsToHighlightMove: util.ArrayList[FieldUnit] = cellsToHighlightMove
   /*
     Calculate possible moves
   */
   def calculateTrollMovement(controllingUnit: FieldUnit): Unit = {
+    def action : CommonUnitActions = new CommonUnitActions()
     cellsToHighlightAttack = checkForTrollsAttack(controllingUnit)
-    addToMap(cellsToHighlightAttack, ATTACK)
     cellsToHighlightMove = checkForTrollsMovement(controllingUnit)
-    addToMap(cellsToHighlightMove, MOVE)
+    var map : Map[Location, CellTargetMode.Value] = action.addToMap(cellsToHighlightAttack, ATTACK)
+    map.++(action.addToMap(cellsToHighlightMove, MOVE))
+    ThudGame.fieldController ! HighlightCellsMessage (map)
   }
 
  /*
@@ -80,18 +76,6 @@ object TrollService{
   }
 
   /*
-    Convert ArrayList to Map [Location, CellTargetMode]
-  */
-  private def addToMap(fieldUnit: util.ArrayList[FieldUnit], cellTargetMode: CellTargetMode.Value): Unit = {
-      var map : Map[Location, CellTargetMode.Value] = Map()
-        for (i <- 0 to fieldUnit.size())
-        {
-          map += (fieldUnit.get(i).location -> cellTargetMode)
-        }
-      HighlightCellsMessage (map)
-  }
-
-  /*
     Check cells for movement possibility
       return ArrayList
   */
@@ -118,7 +102,7 @@ object TrollService{
       dwarfsToKill.add(neighbor)
     }
     if (!dwarfsToKill.isEmpty){
-      //send message
+      ThudGame.fieldController ! DeleteFiguresMessage(dwarfsToKill)
     }
   }
 }

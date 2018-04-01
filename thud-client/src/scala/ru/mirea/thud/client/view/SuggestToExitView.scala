@@ -1,4 +1,5 @@
 package ru.mirea.thud.client.view
+import java.io.File
 import java.net.URL
 import java.util.ResourceBundle
 import javafx.scene.{control => jfxsc}
@@ -11,7 +12,7 @@ import javafx.{scene => jfxs}
 import scalafx.Includes._
 import scalafx.scene.Scene
 
-class suggestToExitView extends jfxf.Initializable{
+class SuggestToExitView extends jfxf.Initializable{
   @jfxf.FXML private var yesButton: jfxsc.Button = _
   @jfxf.FXML private var noButton: jfxsc.Button = _
 
@@ -26,7 +27,8 @@ class suggestToExitView extends jfxf.Initializable{
   }
 
   def showDialogSuggestToOffer(): Unit = {
-    val loader: jfxs.Parent = jfxf.FXMLLoader.load(getClass.getResource("dialogSuggestToOffer.fxml"))
+    val resourcePath = "C:\\Users\\Анастасия\\Downloads\\Thud-master\\thud-client\\src\\resources"
+    val loader: jfxs.Parent = jfxf.FXMLLoader.load(new File(s"$resourcePath\\fxml\\DialogSuggestToOffer.fxml").toURI.toURL)
     var dialogStage = new Stage(){
       title = "Suggest to finish the game"
       scene = new Scene(loader)

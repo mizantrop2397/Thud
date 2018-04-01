@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="600.0" styleClass="background" stylesheets="@../../../../../Desktop/TryScala_1/src/Field.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="600.0" styleClass="background" stylesheets="@../style/Field.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="71.0" layoutY="14.0" prefHeight="68.0" prefWidth="515.0" text="Are you sure you want to end the game?">
          <font>

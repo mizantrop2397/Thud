@@ -10,7 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1099.0" styleClass="background" stylesheets="@../style/Field.css" xmlns="http://javafx.com/javafx/8" fx:controller="FieldView" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1099.0" styleClass="background" stylesheets="@../style/Field.css" xmlns="http://javafx.com/javafx/8" fx:controller="ru.mirea.thud.client.view.FieldView" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutX="35.0" layoutY="23.0" prefHeight="577.0" prefWidth="585.0" stylesheets="@../style/Field.css">
          <children>

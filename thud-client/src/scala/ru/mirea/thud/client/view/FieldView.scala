@@ -1,5 +1,6 @@
 package ru.mirea.thud.client.view
 
+import java.io.File
 import java.net.URL
 import java.util.ResourceBundle
 import javafx.scene.{control => jfxsc}
@@ -8,8 +9,6 @@ import javafx.{fxml => jfxf}
 
 import scalafx.stage.Stage
 import javafx.{scene => jfxs}
-
-
 
 import scalafx.Includes._
 import scalafx.scene.Scene
@@ -21,7 +20,7 @@ class FieldView extends jfxf.Initializable {
   @jfxf.FXML private var helpButton: jfxsc.Button = _
 
   @jfxf.FXML private def suggestToExitTheGame(event: jfxe.ActionEvent) {
-    val dialog = new suggestToExitView;
+    val dialog = new SuggestToExitView;
     dialog.showDialogSuggestToOffer();
   }
 
@@ -37,7 +36,9 @@ class FieldView extends jfxf.Initializable {
   }
 
   def showStartField(): Unit = {
-    val loader: jfxs.Parent = jfxf.FXMLLoader.load(getClass.getResource("gameScreenViewForm.fxml"))
+    val resourcePath = "C:\\Users\\Анастасия\\Downloads\\Thud-master\\thud-client\\src\\resources"
+    val loader: jfxs.Parent = jfxf.FXMLLoader.load(new File(s"$resourcePath\\fxml\\GameScreenViewForm.fxml").toURI.toURL)
+  //  val loader: jfxs.Parent = jfxf.FXMLLoader.load(getClass.getResource("GameScreenViewForm.fxml"))
     var dialogStage = new Stage(){
       scene = new Scene(loader)
       resizable = false

@@ -14,7 +14,7 @@ import scalafx.scene.control.Alert.AlertType
 
 object Main extends JFXApp{
   val resourcePath = "C:\\Users\\Анастасия\\Downloads\\Thud-master\\thud-client\\src\\resources"
-  val loader: jfxs.Parent = jfxf.FXMLLoader.load(new File(s"$resourcePath\\fxml\\startViewForm.fxml").toURI.toURL)
+  val loader: jfxs.Parent = jfxf.FXMLLoader.load(new File(s"$resourcePath\\fxml\\StartViewForm.fxml").toURI.toURL)
   stage = new JFXApp.PrimaryStage {
     title.value = "Thud application"
     scene = new Scene(loader)

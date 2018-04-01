@@ -17,7 +17,7 @@ class CommonUnitActions {
   def addToMap(fieldUnit: util.ArrayList[FieldUnit], cellTargetMode: CellTargetMode.Value): Map[Location, CellTargetMode.Value] = {
     var map : Map[Location, CellTargetMode.Value] = Map()
     for (i <- 0 to fieldUnit.size()) {
-      map += (fieldUnit.get(i).location -> cellTargetMode)
+      //map += (fieldUnit.get(i).location -> cellTargetMode)
     }
     map
   }

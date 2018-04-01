@@ -7,8 +7,8 @@ import java.util.concurrent.{ConcurrentHashMap, ConcurrentLinkedQueue}
 import akka.actor.Actor
 import ru.mirea.thud.common.constants.PlayerRole._
 import ru.mirea.thud.common.model.messages.ToClientMessages.{DrawOfferingClientMessage, EnemyPlayerDisconnectionMessage, SessionCreatedMessage}
-import ru.mirea.thud.common.model.messages.ToServerMessages.{DrawOfferingServerMessage, PlayerActionNotificationMessage, PlayerConnectionServerMessage, PlayerDisconnectionServerMessage}
-import ru.mirea.thud.common.model.{GameField, PlayerConnectionInfo, PlayerState}
+import ru.mirea.thud.common.model.messages.ToServerMessages._
+import ru.mirea.thud.common.model.{FieldUnit, GameField, PlayerConnectionInfo, PlayerState}
 import ru.mirea.thud.server.app.Server.clientPlayerService
 import ru.mirea.thud.server.session.{PlayerInfo, PlayerSession}
 
@@ -28,24 +28,25 @@ class GameService extends Actor {
     case PlayerDisconnectionServerMessage(sessionId, playerId) => disconnectPlayer(sessionId, playerId)
     case PlayerActionNotificationMessage() => notifyEnemyAboutPlayerAction()
     case DrawOfferingServerMessage(sessionId, playerId) => offerDrawToEnemyPlayer(sessionId, playerId)
+    case MoveFiguresMessage(fromCell, toCell) => moveFigures(fromCell, toCell)
   }
 
   def handleNewPlayer(newPlayerInfo: PlayerConnectionInfo): Unit = {
-    if (!playersWaitingQueue.isEmpty) {
-      val sessionId = randomUUID().toString
-      val waitingPlayerId = randomUUID().toString
-      val waitingPlayerInfo = playersWaitingQueue.poll
-      val waitingPlayerRole = if (Random nextBoolean()) TROLL else DWARF
-      val waitingPlayerState = PlayerState(sessionId, waitingPlayerId, waitingPlayerInfo.name, 0, waitingPlayerRole)
-      val newPlayerId = randomUUID().toString
-      val newPlayerRole = if (waitingPlayerRole == TROLL) DWARF else TROLL
-      val newPlayerState = PlayerState(sessionId, newPlayerId, newPlayerInfo.name, 0, newPlayerRole)
-      sessions += sessionId -> PlayerSession(sessionId, PlayerInfo(waitingPlayerInfo, waitingPlayerState), PlayerInfo(newPlayerInfo, newPlayerState))
-      val sessionCreatedMessage = SessionCreatedMessage(waitingPlayerState, newPlayerState)
-      clientPlayerService(waitingPlayerInfo.port, waitingPlayerInfo.host) ! sessionCreatedMessage
+    if (playersWaitingQueue.isEmpty) {
+      playersWaitingQueue add newPlayerInfo
       return
     }
-    playersWaitingQueue add newPlayerInfo
+    val sessionId = randomUUID().toString
+    val waitingPlayerId = randomUUID().toString
+    val waitingPlayerInfo = playersWaitingQueue.poll
+    val waitingPlayerRole = if (Random nextBoolean()) TROLL else DWARF
+    val waitingPlayerState = PlayerState(sessionId, waitingPlayerId, waitingPlayerInfo.name, 0, waitingPlayerRole)
+    val newPlayerId = randomUUID().toString
+    val newPlayerRole = if (waitingPlayerRole == TROLL) DWARF else TROLL
+    val newPlayerState = PlayerState(sessionId, newPlayerId, newPlayerInfo.name, 0, newPlayerRole)
+    sessions += sessionId -> PlayerSession(sessionId, PlayerInfo(waitingPlayerInfo, waitingPlayerState), PlayerInfo(newPlayerInfo, newPlayerState))
+    val sessionCreatedMessage = SessionCreatedMessage(waitingPlayerState, newPlayerState)
+    clientPlayerService(waitingPlayerInfo.port, waitingPlayerInfo.host) ! sessionCreatedMessage
   }
 
   def offerDrawToEnemyPlayer(sessionId: String, playerId: String): Unit = {
@@ -62,5 +63,9 @@ class GameService extends Actor {
     val enemyPlayer = sessions(sessionId) getEnemyPlayer playerId
     clientPlayerService(enemyPlayer.connectionInfo.port, enemyPlayer.connectionInfo.host) ! EnemyPlayerDisconnectionMessage()
     sessions -= sessionId
+  }
+
+  def moveFigures(fromCell: FieldUnit, toCell: FieldUnit): Unit = {
+
   }
 }

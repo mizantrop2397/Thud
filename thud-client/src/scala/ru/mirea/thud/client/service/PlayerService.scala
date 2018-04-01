@@ -1,28 +1,22 @@
 package ru.mirea.thud.client.service
 
-import java.util
-
-import java.util
-import java.util.stream.Collectors
-
 import akka.actor.Actor
-import ru.mirea.thud.client.constants.CellTargetMode
-import ru.mirea.thud.client.constants.CellTargetMode.DEFAULT
-import ru.mirea.thud.client.constants.FieldCellType._
-import ru.mirea.thud.client.constants.CellTargetMode
-import ru.mirea.thud.client.constants.CellTargetMode.DEFAULT
+import ru.mirea.thud.client.app.ThudGame._
+import ru.mirea.thud.client.model.messages._
+import ru.mirea.thud.client.service.CommonUnitActions.setHighlightedCellsToDefault
+import ru.mirea.thud.client.service.DwarfService.processDwarfAttack
+import ru.mirea.thud.client.service.TrollService.{calculateTrollMovement, getCellsToHighlightAttack, getCellsToHighlightMove, processTrollAttack}
 import ru.mirea.thud.common.constants.FieldCellType._
-import ru.mirea.thud.client.model.FieldUnit
-import ru.mirea.thud.client.model.messages.{AttackMessage, CalculateMovementSchemeMessage, HighlightCellsMessage, MovementMessage}
-import ru.mirea.thud.common.model.Location
+import ru.mirea.thud.common.model.FieldUnit
+import ru.mirea.thud.common.model.messages.ToServerMessages.MoveFiguresMessage
 
 class PlayerService extends Actor {
-  def action : CommonUnitActions = new CommonUnitActions()
 
   override def receive: Receive = {
+
     case CalculateMovementSchemeMessage(unit) => unit.cellType match {
-      case DWARF => DwarfService.calculateMovement(unit)
-      case TROLL => TrollService.calculateTrollMovement(unit)
+      case DWARF => DwarfService.calculateDwarfMovement(unit)
+      case TROLL => calculateTrollMovement(unit)
     }
 
     case PerformMovementMessage(unit, newCell) =>
@@ -30,13 +24,13 @@ class PlayerService extends Actor {
       unit.cellType match {
         case DWARF => //TODO: Миша, это твое! Пиши давай, ленивая задница, а то сожгу!
         case TROLL =>
-          ThudGame.gameController ! MoveFiguresMessage(unit, newCell)
-          action.setHighlightedCellsToDefault(TrollService.getCellsToHighlightAttack, TrollService.getCellsToHighlightMove)
+          gameService ! MoveFiguresMessage(unit, newCell)
+          setHighlightedCellsToDefault(getCellsToHighlightAttack, getCellsToHighlightMove)
       }
 
     case PerformAttackMessage(attackedUnit) => attackedUnit.cellType match {
-      case DWARF => DwarfService.processDwarfAttack(attackedUnit)
-      case TROLL => TrollService.processTrollAttack(attackedUnit)
+      case DWARF => processDwarfAttack(attackedUnit)
+      case TROLL => processTrollAttack(attackedUnit)
     }
   }
 

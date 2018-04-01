@@ -2,7 +2,7 @@ package ru.mirea.thud.client.model.messages
 
 import java.util
 
-import ru.mirea.thud.client.model.FieldUnit
+import ru.mirea.thud.common.model.FieldUnit
 
 case class CalculateMovementSchemeMessage(controllingUnit: FieldUnit)
 

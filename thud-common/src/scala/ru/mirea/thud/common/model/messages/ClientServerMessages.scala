@@ -1,6 +1,6 @@
 package ru.mirea.thud.common.model.messages
 
-import ru.mirea.thud.common.model.{PlayerConnectionInfo, PlayerState}
+import ru.mirea.thud.common.model.{FieldUnit, PlayerConnectionInfo, PlayerState}
 
 object ToClientMessages {
 
@@ -14,6 +14,8 @@ object ToClientMessages {
 
 
 object ToServerMessages {
+
+  case class MoveFiguresMessage(oldCell: FieldUnit, newCell: FieldUnit)
 
   case class PlayerConnectionServerMessage(info: PlayerConnectionInfo)
 

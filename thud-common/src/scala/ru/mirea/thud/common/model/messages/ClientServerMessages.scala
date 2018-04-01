@@ -1,11 +1,10 @@
 package ru.mirea.thud.common.model.messages
 
-import ru.mirea.thud.client.state.GameField
-import ru.mirea.thud.common.model.{PlayerConnectionInfo, PlayerState}
+import ru.mirea.thud.common.model.{FieldUnit, PlayerConnectionInfo, PlayerState}
 
 object ToClientMessages {
 
-  case class SessionCreatedMessage(playerState: PlayerState, enemyPlayerState: PlayerState, gameField: GameField)
+  case class SessionCreatedMessage(playerState: PlayerState, enemyPlayerState: PlayerState)
 
   case class EnemyPlayerDisconnectionMessage()
 
@@ -15,6 +14,8 @@ object ToClientMessages {
 
 
 object ToServerMessages {
+
+  case class MoveFiguresMessage(oldCell: FieldUnit, newCell: FieldUnit)
 
   case class PlayerConnectionServerMessage(info: PlayerConnectionInfo)
 

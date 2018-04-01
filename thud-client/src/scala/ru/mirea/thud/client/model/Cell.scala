@@ -1,10 +1,7 @@
 package ru.mirea.thud.client.model
 
-import ru.mirea.thud.common.constants.FieldCellType
 import ru.mirea.thud.common.constants.FieldCellType._
-import ru.mirea.thud.common.model.Location
-
-case class FieldUnit(location: Location, var cellType: FieldCellType.Value, neighbors: List[FieldUnit])
+import ru.mirea.thud.common.model.FieldUnit
 
 object Cell {
   def isCellEmpty(cell: FieldUnit): Boolean ={

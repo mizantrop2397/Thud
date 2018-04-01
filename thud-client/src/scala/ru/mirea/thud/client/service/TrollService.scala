@@ -2,12 +2,14 @@ package ru.mirea.thud.client.service
 
 import java.util
 
+import ru.mirea.thud.client.app.ThudGame.fieldController
 import ru.mirea.thud.client.constants.CellTargetMode
-import ru.mirea.thud.client.constants.FieldCellType.{DWARF, EMPTY, TROLL}
 import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, MOVE}
-import ru.mirea.thud.client.model.messages.HighlightCellsMessage
-import ru.mirea.thud.client.model.{Cell, FieldUnit}
-import ru.mirea.thud.common.model.Location
+import ru.mirea.thud.client.model.Cell._
+import ru.mirea.thud.client.model.messages.{DeleteFiguresMessage, HighlightCellsMessage}
+import ru.mirea.thud.client.service.CommonUnitActions.addToMap
+import ru.mirea.thud.common.constants.FieldCellType._
+import ru.mirea.thud.common.model.{FieldUnit, Location}
 
 /*
 Order of neighbors in list (numbers = indexes)
@@ -16,25 +18,37 @@ Order of neighbors in list (numbers = indexes)
 7  2  6
 */
 object TrollService {
+
   private var cellsToHighlightAttack = new util.ArrayList[FieldUnit]
   private var cellsToHighlightMove = new util.ArrayList[FieldUnit]
 
-  def getCellsToHighlightAttack: util.ArrayList[FieldUnit] = {
-    cellsToHighlightAttack
-  }
+  def getCellsToHighlightAttack: util.ArrayList[FieldUnit] = cellsToHighlightAttack
 
-  def getCellsToHighlightMove: util.ArrayList[FieldUnit] = {
-    cellsToHighlightMove
-  }
+  def getCellsToHighlightMove: util.ArrayList[FieldUnit] = cellsToHighlightMove
 
   /*
     Calculate possible moves
   */
   def calculateTrollMovement(controllingUnit: FieldUnit): Unit = {
     cellsToHighlightAttack = checkForTrollsAttack(controllingUnit)
-    addToMap(cellsToHighlightAttack, ATTACK)
     cellsToHighlightMove = checkForTrollsMovement(controllingUnit)
-    addToMap(cellsToHighlightMove, MOVE)
+    val map: Map[Location, CellTargetMode.Value] = addToMap(cellsToHighlightAttack, ATTACK)
+    map ++ addToMap(cellsToHighlightMove, MOVE)
+    fieldController ! HighlightCellsMessage(map)
+  }
+
+  /*
+    Setting cells with dwarfs to empty and notify other player
+  */
+  def processTrollAttack(selectedCell: FieldUnit): Unit = {
+    val dwarfsToKill = new util.ArrayList[FieldUnit]()
+    for (neighbor <- selectedCell.neighbors if neighbor.cellType.equals(DWARF)) {
+      neighbor.cellType = EMPTY
+      dwarfsToKill.add(neighbor)
+    }
+    if (!dwarfsToKill.isEmpty) {
+      fieldController ! DeleteFiguresMessage(dwarfsToKill)
+    }
   }
 
   /*
@@ -42,12 +56,12 @@ object TrollService {
        return ArrayList
   */
   private def checkForTrollsAttack(controllingUnit: FieldUnit): util.ArrayList[FieldUnit] = {
-    var possibleCells = new util.ArrayList[FieldUnit]()
+    val possibleCells = new util.ArrayList[FieldUnit]()
     (0 to 3).foreach {
       i => {
         var count = 0
         val neighbor = controllingUnit.neighbors(i)
-        if (Cell.isCellTroll(neighbor) && ((i < 2 && controllingUnit.neighbors(i + 2).cellType.equals(TROLL)) && (i > 2 && controllingUnit.neighbors(i - 2).cellType.equals(TROLL)))) {
+        if (isCellTroll(neighbor) && ((i < 2 && controllingUnit.neighbors(i + 2).cellType.equals(TROLL)) && (i > 2 && controllingUnit.neighbors(i - 2).cellType.equals(TROLL)))) {
           count = countLineLength(neighbor, i)
         }
         var index = i
@@ -78,44 +92,19 @@ object TrollService {
   }
 
   /*
-    Convert ArrayList to Map [Location, CellTargetMode]
-  */
-  private def addToMap(fieldUnit: util.ArrayList[FieldUnit], cellTargetMode: CellTargetMode.Value): Unit = {
-    var map: Map[Location, CellTargetMode.Value] = Map()
-    for (i <- 0 to fieldUnit.size()) {
-      map += (fieldUnit.get(i).location -> cellTargetMode)
-    }
-    HighlightCellsMessage(map)
-  }
-
-  /*
     Check cells for movement possibility
       return ArrayList
   */
   private def checkForTrollsMovement(controllingUnit: FieldUnit): util.ArrayList[FieldUnit] = {
-    var possibleCells = new util.ArrayList[FieldUnit]()
+    val possibleCells = new util.ArrayList[FieldUnit]()
     (4 to 7).foreach {
       i => {
         val neighbor = controllingUnit.neighbors(i)
-        if (Cell.isCellEmpty(neighbor)) {
+        if (isCellEmpty(neighbor)) {
           possibleCells.add(neighbor)
         }
       }
     }
     possibleCells
-  }
-
-  /*
-    Setting cells with dwarfs to empty and notify other player
-  */
-  def processTrollAttack(selectedCell: FieldUnit): Unit = {
-    var dwarfsToKill = new util.ArrayList[FieldUnit]()
-    for (neighbor <- selectedCell.neighbors if neighbor.cellType.equals(DWARF)) {
-      neighbor.cellType = EMPTY
-      dwarfsToKill.add(neighbor)
-    }
-    if (!dwarfsToKill.isEmpty) {
-      //send message
-    }
   }
 }

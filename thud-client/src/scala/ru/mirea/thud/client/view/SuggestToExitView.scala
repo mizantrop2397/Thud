@@ -16,8 +16,11 @@ class SuggestToExitView extends jfxf.Initializable{
   @jfxf.FXML private var yesButton: jfxsc.Button = _
   @jfxf.FXML private var noButton: jfxsc.Button = _
 
+  var dialogStage: Stage = _
+
   @jfxf.FXML private def yesButtonPressed(event: jfxe.ActionEvent) {
     System.out.println("Закрыть текущее окно. Открыть окно результата")
+    ViewHolder.view.dialogStage.close()
   }
 
   @jfxf.FXML private def noButtonPressed(event: jfxe.ActionEvent): Unit = {
@@ -29,13 +32,20 @@ class SuggestToExitView extends jfxf.Initializable{
   def showDialogSuggestToOffer(): Unit = {
     val resourcePath = "C:\\Users\\Анастасия\\Downloads\\Thud-master\\thud-client\\src\\resources"
     val loader: jfxs.Parent = jfxf.FXMLLoader.load(new File(s"$resourcePath\\fxml\\DialogSuggestToOffer.fxml").toURI.toURL)
-    var dialogStage = new Stage(){
+    dialogStage = new Stage(){
       title = "Suggest to finish the game"
       scene = new Scene(loader)
       resizable = false
     }
+    ViewHolder.view = this
     dialogStage.showAndWait()
   }
 
   override def initialize(location: URL, resources: ResourceBundle): Unit ={}
+
+}
+
+
+object ViewHolder {
+  var view: SuggestToExitView = _
 }

@@ -19,7 +19,7 @@ import ru.mirea.thud.common.model.Location
 class PlayerService extends Actor {
   override def receive: Receive = {
     case CalculateMovementSchemeMessage(unit) => unit.cellType match {
-      case DWARF => DwarfService.calculateDwarfMovement(unit)
+      case DWARF => DwarfService.calculateMovement(unit)
       case TROLL => TrollService.calculateTrollMovement(unit)
     }
 
@@ -31,7 +31,7 @@ class PlayerService extends Actor {
       }
 
     case AttackMessage(attackedUnit) => attackedUnit.cellType match {
-      case DWARF => DwarfService.processDwarfAttack(attackedUnit)
+      case DWARF => DwarfService.processAttack(attackedUnit)
       case TROLL => TrollService.processTrollAttack(attackedUnit)
     }
   }

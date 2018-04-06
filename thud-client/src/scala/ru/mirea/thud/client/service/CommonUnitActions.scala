@@ -9,7 +9,6 @@ import ru.mirea.thud.client.model.messages.HighlightCellsMessage
 import ru.mirea.thud.common.model.{FieldUnit, Location}
 
 object CommonUnitActions {
-
   def setHighlightedCellsToDefault(arrayToAttack: util.ArrayList[FieldUnit], arrayToMove: util.ArrayList[FieldUnit]): Unit = {
     val map: Map[Location, CellTargetMode.Value] = addToMap(arrayToAttack, DEFAULT)
     map ++ addToMap(arrayToMove, DEFAULT)

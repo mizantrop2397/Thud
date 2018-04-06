@@ -2,12 +2,13 @@ package ru.mirea.thud.client.service
 
 import java.util
 
-import ru.mirea.thud.client.constants.CellTargetMode
+import ru.mirea.thud.client.app.ThudGame.fieldController
 import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, MOVE}
+import ru.mirea.thud.client.model.Cell
 import ru.mirea.thud.client.model.messages.HighlightCellsMessage
-import ru.mirea.thud.client.model.{Cell, FieldUnit}
+import ru.mirea.thud.client.service.CommonUnitActions.addToMap
 import ru.mirea.thud.common.constants.FieldCellType.{DWARF, EMPTY, TROLL}
-import ru.mirea.thud.common.model.Location
+import ru.mirea.thud.common.model.FieldUnit
 
 /*
 Order of neighbors in list (numbers = indexes)
@@ -28,9 +29,10 @@ object DwarfService {
     */
   def calculateMovement(controllingUnit: FieldUnit): Unit = {
     cellsToHighlightAttack = checkForAttack(controllingUnit)
-    addToMap(cellsToHighlightAttack, ATTACK)
     cellsToHighlightMove = checkForMovement(controllingUnit)
-    addToMap(cellsToHighlightMove, MOVE)
+    val map = addToMap(cellsToHighlightAttack, ATTACK)
+    map ++ addToMap(cellsToHighlightMove, MOVE)
+    fieldController ! HighlightCellsMessage(map)
   }
 
   /**
@@ -83,17 +85,6 @@ object DwarfService {
       count = countLineLength(currentUnit.neighbors(index), index)
     }
     count + 1
-  }
-
-  /**
-    * Convert ArrayList to Map [Location, CellTargetMode]
-    */
-  private def addToMap(fieldUnit: util.ArrayList[FieldUnit], cellTargetMode: CellTargetMode.Value): Unit = {
-    var map: Map[Location, CellTargetMode.Value] = Map()
-    for (i <- 0 to fieldUnit.size()) {
-      map += (fieldUnit.get(i).location -> cellTargetMode)
-    }
-    HighlightCellsMessage(map) // Review. Забыли контроллер
   }
 
   /**

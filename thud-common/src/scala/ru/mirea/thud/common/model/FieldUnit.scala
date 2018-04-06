@@ -2,4 +2,6 @@ package ru.mirea.thud.common.model
 
 import ru.mirea.thud.common.constants.FieldCellType
 
-case class FieldUnit(location: Location, var cellType: FieldCellType.Value, neighbors: List[FieldUnit])
+import scala.collection.mutable.ListBuffer
+
+case class FieldUnit(location: Location, var cellType: FieldCellType.Value, neighbors: ListBuffer[FieldUnit])

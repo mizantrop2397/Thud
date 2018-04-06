@@ -5,11 +5,14 @@ import java.util.UUID.randomUUID
 import java.util.concurrent.{ConcurrentHashMap, ConcurrentLinkedQueue}
 
 import akka.actor.Actor
+import ru.mirea.thud.common.constants.FieldCellType.EMPTY
 import ru.mirea.thud.common.constants.PlayerRole._
-import ru.mirea.thud.common.model.messages.ToClientMessages.{DrawOfferingClientMessage, EnemyPlayerDisconnectionMessage, SessionCreatedMessage}
+import ru.mirea.thud.common.model.messages.PlayerIdentifiers
+import ru.mirea.thud.common.model.messages.ToClientMessages.{DrawOfferingClientMessage, EnemyPlayerDisconnectionMessage, SessionCreatedMessage, UpdateGameField}
 import ru.mirea.thud.common.model.messages.ToServerMessages._
-import ru.mirea.thud.common.model.{FieldUnit, GameField, PlayerConnectionInfo, PlayerState}
-import ru.mirea.thud.server.app.Server.clientPlayerService
+import ru.mirea.thud.common.model.{FieldUnit, PlayerConnectionInfo, PlayerState}
+import ru.mirea.thud.server.app.Server.{clientPlayerService, gameField}
+import ru.mirea.thud.server.calculator.NeighborsCalculator.calculateNeighbors
 import ru.mirea.thud.server.session.{PlayerInfo, PlayerSession}
 
 import scala.collection.JavaConverters._
@@ -21,17 +24,15 @@ class GameService extends Actor {
 
   val playersWaitingQueue: util.Queue[PlayerConnectionInfo] = new ConcurrentLinkedQueue[PlayerConnectionInfo]
 
-  val gameField = new GameField
-
   override def receive: Receive = {
     case PlayerConnectionServerMessage(playerInfo) => handleNewPlayer(playerInfo)
-    case PlayerDisconnectionServerMessage(sessionId, playerId) => disconnectPlayer(sessionId, playerId)
-    case PlayerActionNotificationMessage() => notifyEnemyAboutPlayerAction()
-    case DrawOfferingServerMessage(sessionId, playerId) => offerDrawToEnemyPlayer(sessionId, playerId)
-    case MoveFiguresMessage(fromCell, toCell) => moveFigures(fromCell, toCell)
+    case PlayerDisconnectionServerMessage(identifiers) => disconnectPlayer(identifiers)
+    case DrawOfferingServerMessage(identifiers) => offerDrawToEnemyPlayer(identifiers)
+    case MoveFiguresMessage(identifiers, fromCell, toCell) => moveFigures(identifiers, fromCell, toCell)
+    case DeleteFiguresMessage(identifiers, cells) => deleteFigures(identifiers, cells.asScala toList)
   }
 
-  def handleNewPlayer(newPlayerInfo: PlayerConnectionInfo): Unit = {
+  private def handleNewPlayer(newPlayerInfo: PlayerConnectionInfo): Unit = {
     if (playersWaitingQueue.isEmpty) {
       playersWaitingQueue add newPlayerInfo
       return
@@ -49,23 +50,46 @@ class GameService extends Actor {
     clientPlayerService(waitingPlayerInfo.port, waitingPlayerInfo.host) ! sessionCreatedMessage
   }
 
-  def offerDrawToEnemyPlayer(sessionId: String, playerId: String): Unit = {
-    val playerInfo = sessions(sessionId) getPlayer playerId
-    val enemyPlayerInfo = sessions(sessionId) getEnemyPlayer playerId
-    clientPlayerService(enemyPlayerInfo.connectionInfo.port, enemyPlayerInfo.connectionInfo.host) ! DrawOfferingClientMessage(enemyPlayerInfo.state.score, playerInfo.state.score)
+  private def offerDrawToEnemyPlayer(identifiers: PlayerIdentifiers): Unit = {
+    val player = sessions(identifiers.sessionId) getPlayer identifiers.playerId
+    val enemy = sessions(identifiers.sessionId) getEnemyPlayer identifiers.playerId
+    clientPlayerService(enemy.connectionInfo.port, enemy.connectionInfo.host) ! DrawOfferingClientMessage(enemy.state.score, player.state.score)
   }
 
-  def notifyEnemyAboutPlayerAction(): Unit = {
+  private def disconnectPlayer(identifiers: PlayerIdentifiers): Unit = {
+    val enemy = sessions(identifiers.sessionId) getEnemyPlayer identifiers.playerId connectionInfo
 
+    sessions -= identifiers.sessionId
+    clientPlayerService(enemy.port, enemy.host) ! EnemyPlayerDisconnectionMessage()
   }
 
-  def disconnectPlayer(sessionId: String, playerId: String): Unit = {
-    val enemyPlayer = sessions(sessionId) getEnemyPlayer playerId
-    clientPlayerService(enemyPlayer.connectionInfo.port, enemyPlayer.connectionInfo.host) ! EnemyPlayerDisconnectionMessage()
-    sessions -= sessionId
+  private def moveFigures(identifiers: PlayerIdentifiers, fromCell: FieldUnit, toCell: FieldUnit): Unit = {
+    fromCell.neighbors remove fromCell.neighbors.indexWhere(neighbor => neighbor == fromCell)
+    calculateNeighbors(toCell) foreach { neighbor =>
+      toCell.neighbors += neighbor
+      neighbor.neighbors += toCell
+    }
+    val player = sessions(identifiers.sessionId) getPlayer identifiers.playerId connectionInfo
+    val enemy = sessions(identifiers.sessionId) getEnemyPlayer identifiers.playerId connectionInfo
+
+    gameField.units(fromCell.location) = fromCell
+    gameField.units(toCell.location) = toCell
+    clientPlayerService(player.port, player.host) ! UpdateGameField(gameField)
+    clientPlayerService(enemy.port, enemy.host) ! UpdateGameField(gameField)
   }
 
-  def moveFigures(fromCell: FieldUnit, toCell: FieldUnit): Unit = {
 
+  private def deleteFigures(identifiers: PlayerIdentifiers, units: List[FieldUnit]): Unit = {
+    units foreach { unit =>
+      gameField.units
+        .values
+        .filter(gameUnit => gameUnit.location == unit.location)
+        .foreach(unit => unit.cellType = EMPTY)
+    }
+    val player = sessions(identifiers.sessionId) getPlayer identifiers.playerId connectionInfo
+    val enemy = sessions(identifiers.sessionId) getEnemyPlayer identifiers.playerId connectionInfo
+
+    clientPlayerService(player.port, player.host) ! UpdateGameField(gameField)
+    clientPlayerService(enemy.port, enemy.host) ! UpdateGameField(gameField)
   }
 }

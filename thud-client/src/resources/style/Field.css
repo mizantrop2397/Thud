@@ -1,23 +1,22 @@
 /*Клетки поля*/
 .board_square {
-	-fx-fill: #1e90ff;
+    -fx-fill: #1e90ff;
 }
 
 .board_square_lt {
-	-fx-fill: white;
+    -fx-fill: white;
 }
 
 .button {
--fx-text-fill: white;
--fx-font-weight: bold;
--fx-background-color: linear-gradient(#a40000, black);
--fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.6),5,0.0,0,1);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#a40000, black);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
 }
 
-
-.background{
--fx-background-image: url("fon.jpg");
--fx-background-size: cover;
--fx-font-size: 21px;
-border: #a40000;
+.background {
+    -fx-background-image: url("fon.jpg");
+    -fx-background-size: cover;
+    -fx-font-size: 21px;
+    border: #a40000;
 }

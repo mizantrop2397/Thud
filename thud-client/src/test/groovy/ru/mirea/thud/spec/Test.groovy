@@ -12,7 +12,8 @@ import spock.lang.Specification
 import static akka.actor.ActorRef.noSender
 
 class Test extends Specification {
-    @Shared actorSystem = ActorSystem.create("TestSystem")
+    @Shared
+            actorSystem = ActorSystem.create("TestSystem")
 
     def "А это тестик"() {
         setup:

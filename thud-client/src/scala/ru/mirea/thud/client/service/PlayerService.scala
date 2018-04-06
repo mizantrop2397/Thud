@@ -6,7 +6,6 @@ import ru.mirea.thud.client.model.messages._
 import ru.mirea.thud.client.service.CommonUnitActions.setHighlightedCellsToDefault
 import ru.mirea.thud.client.state.GameState
 import ru.mirea.thud.common.constants.FieldCellType._
-import ru.mirea.thud.common.model.FieldUnit
 import ru.mirea.thud.common.model.messages.PlayerIdentifiers
 import ru.mirea.thud.common.model.messages.ToServerMessages.MoveFiguresMessage
 

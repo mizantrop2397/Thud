@@ -8,14 +8,13 @@ import ru.mirea.thud.common.path.Paths.clientActorPath
 import ru.mirea.thud.server.controller.GameService
 
 object Server extends App {
+  lazy val gameField = new GameField
   private val actorSystem = create(SERVER_ACTOR_SYSTEM)
-  private val gameService: ActorRef = actorSystem actorOf(Props[GameService], GAME_SERVICE_ACTOR)
   println(s"Created actor: $gameService")
   println("Server started")
+  private val gameService: ActorRef = actorSystem actorOf(Props[GameService], GAME_SERVICE_ACTOR)
 
   def clientPlayerService(clientPort: Int, clientHost: String): ActorSelection = {
     actorSystem actorSelection clientActorPath(PLAYER_SERVICE_ACTOR, clientPort, clientHost)
   }
-
-  lazy val gameField = new GameField
 }

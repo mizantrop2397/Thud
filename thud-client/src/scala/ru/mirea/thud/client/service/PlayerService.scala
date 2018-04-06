@@ -1,47 +1,44 @@
 package ru.mirea.thud.client.service
 
 import akka.actor.Actor
-import ru.mirea.thud.client.model.messages.{AttackMessage, CalculateMovementSchemeMessage, MovementMessage}
-import ru.mirea.thud.common.constants.PlayerRole.{DWARF, TROLL}
-import ru.mirea.thud.common.model.GameUnit
+import ru.mirea.thud.client.app.ThudGame._
+import ru.mirea.thud.client.model.messages._
+import ru.mirea.thud.client.service.CommonUnitActions.setHighlightedCellsToDefault
+import ru.mirea.thud.common.constants.FieldCellType._
+import ru.mirea.thud.common.model.FieldUnit
+import ru.mirea.thud.common.model.messages.ToServerMessages.MoveFiguresMessage
 
 class PlayerService extends Actor {
+
   override def receive: Receive = {
-    case CalculateMovementSchemeMessage(unit) => unit.unitType match {
-      case DWARF => calculateDwarfMovement(unit)
-      case TROLL => calculateTrollMovement(unit)
+
+    case CalculateMovementSchemeMessage(unit) => unit.cellType match {
+      case DWARF => DwarfService.calculateMovement(unit)
+      case TROLL => TrollService.calculateTrollMovement(unit)
     }
-    case MovementMessage(unit) => unit.unitType match {
-      case DWARF => processDwarfMovement(unit)
-      case TROLL => processTrollMovement(unit)
+
+    case PerformMovementMessage(unit, newCell) =>
+      processMovement(unit, newCell)
+      unit.cellType match {
+        case DWARF =>
+          setHighlightedCellsToDefault(DwarfService.getCellsToHighlightAttack, DwarfService.getCellsToHighlightMove)
+        case TROLL =>
+          setHighlightedCellsToDefault(TrollService.getCellsToHighlightAttack, TrollService.getCellsToHighlightMove)
+      }
+      gameService ! MoveFiguresMessage(unit, newCell)
+
+    case PerformAttackMessage(attackedUnit) => attackedUnit.cellType match {
+      case DWARF => DwarfService.processAttack(attackedUnit)
+      case TROLL => TrollService.processTrollAttack(attackedUnit)
     }
-    case AttackMessage(controllingUnit, attackedUnit) => controllingUnit.unitType match {
-      case DWARF => processDwarfAttack(controllingUnit, attackedUnit)
-      case TROLL => processTrollAttack(controllingUnit, attackedUnit)
-    }
   }
 
-  private def processDwarfMovement(unit: GameUnit): Unit = {
-
+  /*
+    Move a figure
+  */
+  private def processMovement(unit: FieldUnit, newCell: FieldUnit): Unit = {
+    unit.location.copy(newCell.location.x, newCell.location.y)
   }
 
-  private def processTrollMovement(unit: GameUnit): Unit = {
-
-  }
-
-  private def processDwarfAttack(controllingUnit: GameUnit, attackedUnit: GameUnit): Unit = {
-
-  }
-
-  private def processTrollAttack(controllingUnit: GameUnit, attackedUnit: GameUnit): Unit = {
-
-  }
-
-  private def calculateDwarfMovement(unit: GameUnit): Unit = {
-  }
-
-  private def calculateTrollMovement(unit: GameUnit): Unit = {
-
-  }
 }
 

@@ -5,6 +5,9 @@ import ru.mirea.thud.client.app.ThudGame
 import ru.mirea.thud.client.constants.FieldCellType._
 import ru.mirea.thud.client.model.FieldUnit
 import ru.mirea.thud.client.model.messages._
+import ru.mirea.thud.client.view._
+//import ru.mirea.thud.client.view.ru.mirea.thud.client.constants.FieldView
+import ru.mirea.thud.common.model.messages.ToClientMessages
 
 class PlayerService extends Actor {
   def action : CommonUnitActions = new CommonUnitActions()
@@ -29,6 +32,41 @@ class PlayerService extends Actor {
       case DWARF => DwarfService.processDwarfAttack(attackedUnit)
       case TROLL => TrollService.processTrollAttack(attackedUnit)
     }
+
+      /*добавить параметр enemyPlayer*/
+      /*
+    case ToClientMessages.EnemyPlayerDisconnectionMessage (enemyPlayerScore: Int)=> {
+      val winnerAfterDisconnect = new WinView
+      WinStage.score=enemyPlayerScore.toString
+      winnerAfterDisconnect.showWinnerDialog()
+    }*/
+
+    case ToClientMessages.SessionCreatedMessage(playerState,enemyPlayerState, field) => {
+
+      val units = field.units.values
+      for(unit <- units) {
+        unit.id
+      }
+      Main.stage.close()
+      val fieldView = new FieldView
+      fieldView.showStartField()
+      fieldView.setData(playerState.name,playerState.role, playerState.score, enemyPlayerState.name,enemyPlayerState.role, enemyPlayerState.score)
+    }
+
+      /*Нужно имя выигрывшего или двух*/
+    case ToClientMessages.DrawOfferingClientMessage(playerScore: Int, enemyPlayerScore: Int)=>{
+      if (playerScore>enemyPlayerScore){
+        ViewHolder.name
+        ViewHolder.score=playerScore.toString
+      }
+      else{
+        ViewHolder.name
+        ViewHolder.score=enemyPlayerScore.toString
+      }
+      val offering = new SuggestToExitView
+      offering.showDialogSuggestToOffer()
+  }
+
   }
 
   /*

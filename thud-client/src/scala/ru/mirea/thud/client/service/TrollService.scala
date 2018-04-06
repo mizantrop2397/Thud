@@ -59,7 +59,7 @@ object TrollService{
             if (controllingUnit.neighbors(index).cellType.equals(EMPTY)){
               possibleCells.add(controllingUnit.neighbors(index))
             }
-            controllingUnit.copy(controllingUnit.neighbors(index).location, controllingUnit.neighbors(index).cellType, controllingUnit.neighbors(index).neighbors)
+            controllingUnit.copy(null, controllingUnit.neighbors(index).location, controllingUnit.neighbors(index).cellType, controllingUnit.neighbors(index).neighbors)
           }
         }
       }

@@ -41,7 +41,7 @@ class GameService extends Actor {
       val newPlayerRole = if (waitingPlayerRole == TROLL) DWARF else TROLL
       val newPlayerState = PlayerState(sessionId, newPlayerId, newPlayerInfo.name, 0, newPlayerRole)
       sessions += sessionId -> PlayerSession(sessionId, PlayerInfo(waitingPlayerInfo, waitingPlayerState), PlayerInfo(newPlayerInfo, newPlayerState))
-      val sessionCreatedMessage = SessionCreatedMessage(waitingPlayerState, newPlayerState)
+      val sessionCreatedMessage = SessionCreatedMessage(waitingPlayerState, newPlayerState, null)
       clientPlayerService(waitingPlayerInfo.port, waitingPlayerInfo.host) ! sessionCreatedMessage
       return
     }

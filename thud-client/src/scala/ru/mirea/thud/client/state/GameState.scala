@@ -8,7 +8,7 @@ import ru.mirea.thud.common.model.Location
 
 case class PlayerState(var id: String = EMPTY_STRING, var name: String = EMPTY_STRING, var score: Int = 0, var role: PlayerRole.Value = TROLL)
 
-case class GameField(units: Map[Location, FieldUnit] = Map())
+case class GameField(units: Map[String, FieldUnit] = Map())
 
 case class GameScore(var playerVictories: Int = 0, var enemyPlayerVictories: Int = 0)
 

@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="600.0" styleClass="background" stylesheets="@../style/Field.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="600.0" styleClass="background" stylesheets="@../style/Field.css" xmlns="http://javafx.com/javafx/8" fx:controller="ru.mirea.thud.client.view.ExitView" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="71.0" layoutY="14.0" prefHeight="68.0" prefWidth="515.0" text="Are you sure you want to end the game?">
          <font>
@@ -17,7 +17,7 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Button layoutX="71.0" layoutY="138.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="148.0" text="YES" />
-      <Button layoutX="359.0" layoutY="138.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="148.0" text="NO" />
+      <Button fx:id="yesButton" layoutX="71.0" layoutY="138.0" mnemonicParsing="false" onAction="#yesButtonPressed" prefHeight="39.0" prefWidth="148.0" text="YES" />
+      <Button fx:id="noButton" layoutX="359.0" layoutY="138.0" mnemonicParsing="false" onAction="#noButtonPressed" prefHeight="39.0" prefWidth="148.0" text="NO" />
    </children>
 </Pane>

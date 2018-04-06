@@ -6,9 +6,10 @@ import ru.mirea.thud.client.app.ThudGame.fieldController
 import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, MOVE}
 import ru.mirea.thud.client.model.Cell._
-import ru.mirea.thud.client.model.messages.{DeleteFiguresMessage, HighlightCellsMessage}
+import ru.mirea.thud.client.model.messages.HighlightCellsMessage
 import ru.mirea.thud.client.service.CommonUnitActions.addToMap
 import ru.mirea.thud.common.constants.FieldCellType._
+import ru.mirea.thud.common.model.messages.ToServerMessages.DeleteFiguresMessage
 import ru.mirea.thud.common.model.{FieldUnit, Location}
 
 /*

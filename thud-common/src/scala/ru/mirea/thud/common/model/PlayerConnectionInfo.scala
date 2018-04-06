@@ -6,7 +6,7 @@ import ru.mirea.thud.common.constants.PlayerRole.TROLL
 
 case class PlayerConnectionInfo(name: String, host: String, port: Int)
 
-case class PlayerState(sessionId: String,
+case class PlayerState(sessionId: String = EMPTY_STRING,
                        id: String = EMPTY_STRING,
                        name: String = EMPTY_STRING,
                        score: Int = 0,

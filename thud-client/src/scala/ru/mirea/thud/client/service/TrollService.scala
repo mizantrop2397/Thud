@@ -8,7 +8,9 @@ import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, MOVE}
 import ru.mirea.thud.client.model.Cell._
 import ru.mirea.thud.client.model.messages.HighlightCellsMessage
 import ru.mirea.thud.client.service.CommonUnitActions.addToMap
+import ru.mirea.thud.client.state.GameState
 import ru.mirea.thud.common.constants.FieldCellType._
+import ru.mirea.thud.common.model.messages.PlayerIdentifiers
 import ru.mirea.thud.common.model.messages.ToServerMessages.DeleteFiguresMessage
 import ru.mirea.thud.common.model.{FieldUnit, Location}
 
@@ -48,7 +50,7 @@ object TrollService {
       dwarfsToKill.add(neighbor)
     }
     if (!dwarfsToKill.isEmpty) {
-      fieldController ! DeleteFiguresMessage(dwarfsToKill)
+      fieldController ! DeleteFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), dwarfsToKill)
     }
   }
 

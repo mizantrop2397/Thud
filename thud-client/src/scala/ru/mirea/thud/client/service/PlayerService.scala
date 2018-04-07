@@ -9,12 +9,14 @@ import ru.mirea.thud.client.service.CommonUnitActions.setHighlightedCellsToDefau
 import ru.mirea.thud.client.service.DwarfService.{calculateDwarfMovement, getDwarfCellsToHighlightAttack, getDwarfCellsToHighlightMove, processDwarfAttack}
 import ru.mirea.thud.client.service.TrollService.{calculateTrollMovement, getTrollCellsToHighlightAttack, getTrollCellsToHighlightMove, processTrollAttack}
 import ru.mirea.thud.client.state.GameState
+import ru.mirea.thud.client.view.{NotificationView, View}
 import ru.mirea.thud.common.constants.FieldCellType._
 import ru.mirea.thud.common.constants.PlayerRole
 import ru.mirea.thud.common.model.messages.PlayerIdentifiers
-import ru.mirea.thud.common.model.messages.ToClientMessages.SessionCreatedMessage
+import ru.mirea.thud.common.model.messages.ToClientMessages.{DrawOfferingClientMessage, SessionCreatedMessage}
 import ru.mirea.thud.common.model.messages.ToServerMessages.MoveFiguresMessage
 import ru.mirea.thud.common.model.{FieldUnit, GameField, PlayerState}
+import scalafx.application.Platform
 import scalafx.application.Platform.runLater
 
 class PlayerService extends Actor {
@@ -23,6 +25,12 @@ class PlayerService extends Actor {
     case CalculateMovementSchemeMessage(unit) => calculateMovement(unit)
     case PerformMovementMessage(unit, newCell) => performMovement(unit, newCell)
     case PerformAttackMessage(attackedUnit) => performAttack(attackedUnit)
+    case DrawOfferingClientMessage(playerScore, enemyPlayerScore) =>
+      View.name = GameState.playerState.name
+      View.score = GameState.playerState.score.toString
+      Platform.runLater {
+        new NotificationView().showNotification()
+      }
   }
 
   private def performAttack(attackedUnit: FieldUnit): Unit = {

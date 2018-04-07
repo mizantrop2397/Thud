@@ -5,8 +5,11 @@ import java.util.ResourceBundle
 
 import javafx.scene.{control => jfxsc}
 import javafx.{event => jfxe, fxml => jfxf}
+import ru.mirea.thud.client.app.ThudGame.gameService
 import ru.mirea.thud.client.loader.ViewLoader.loadDialogSuggestToOffer
 import ru.mirea.thud.client.state.GameState
+import ru.mirea.thud.common.model.messages.PlayerIdentifiers
+import ru.mirea.thud.common.model.messages.ToServerMessages.DrawOfferingServerMessage
 import scalafx.Includes._
 import scalafx.scene.Scene
 import scalafx.stage.Stage
@@ -32,6 +35,7 @@ class SuggestToExitView extends jfxf.Initializable {
   }
 
   @jfxf.FXML private def yesButtonPressed(event: jfxe.ActionEvent) {
+    gameService ! DrawOfferingServerMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id))
     System.out.println("Закрыть текущее окно. Открыть окно результата")
     ViewHolder.view.dialogStage.close()
     View.score = ViewHolder.score

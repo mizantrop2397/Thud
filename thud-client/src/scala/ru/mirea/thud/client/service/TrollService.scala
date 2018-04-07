@@ -1,7 +1,5 @@
 package ru.mirea.thud.client.service
 
-import java.util
-
 import ru.mirea.thud.client.app.ThudGame.fieldService
 import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, MOVE}
@@ -14,6 +12,8 @@ import ru.mirea.thud.common.model.messages.PlayerIdentifiers
 import ru.mirea.thud.common.model.messages.ToServerMessages.DeleteFiguresMessage
 import ru.mirea.thud.common.model.{FieldUnit, Location}
 
+import scala.collection.mutable.ListBuffer
+
 /*
 Order of neighbors in list (numbers = indexes)
 4  0  5
@@ -22,12 +22,12 @@ Order of neighbors in list (numbers = indexes)
 */
 object TrollService {
 
-  private var cellsToHighlightAttack = new util.ArrayList[FieldUnit]
-  private var cellsToHighlightMove = new util.ArrayList[FieldUnit]
+  private var cellsToHighlightAttack = List[FieldUnit]()
+  private var cellsToHighlightMove = List[FieldUnit]()
 
-  def getCellsToHighlightAttack: util.ArrayList[FieldUnit] = cellsToHighlightAttack
+  def getTrollCellsToHighlightAttack: List[FieldUnit] = cellsToHighlightAttack
 
-  def getCellsToHighlightMove: util.ArrayList[FieldUnit] = cellsToHighlightMove
+  def getTrollCellsToHighlightMove: List[FieldUnit] = cellsToHighlightMove
 
   /*
     Calculate possible moves
@@ -44,13 +44,13 @@ object TrollService {
     Setting cells with dwarfs to empty and notify other player
   */
   def processTrollAttack(selectedCell: FieldUnit): Unit = {
-    val dwarfsToKill = new util.ArrayList[FieldUnit]()
+    val dwarfsToKill = ListBuffer[FieldUnit]()
     for (neighbor <- selectedCell.neighbors if neighbor.cellType.equals(DWARF)) {
       neighbor.cellType = EMPTY
-      dwarfsToKill.add(neighbor)
+      dwarfsToKill += neighbor
     }
-    if (!dwarfsToKill.isEmpty) {
-      fieldService ! DeleteFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), dwarfsToKill)
+    if (dwarfsToKill.nonEmpty) {
+      fieldService ! DeleteFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), dwarfsToKill.toList)
     }
   }
 
@@ -58,8 +58,8 @@ object TrollService {
      Check cells for attack possibility
        return ArrayList
   */
-  private def checkForTrollsAttack(controllingUnit: FieldUnit): util.ArrayList[FieldUnit] = {
-    val possibleCells = new util.ArrayList[FieldUnit]()
+  private def checkForTrollsAttack(controllingUnit: FieldUnit): List[FieldUnit] = {
+    val possibleCells = ListBuffer[FieldUnit]()
     (0 to 3).foreach {
       i => {
         var count = 0
@@ -78,14 +78,14 @@ object TrollService {
         (0 to count).foreach {
           j => {
             if (controllingUnit.neighbors(index).cellType.equals(EMPTY)) {
-              possibleCells add controllingUnit.neighbors(index)
+              possibleCells += controllingUnit.neighbors(index)
             }
-            possibleCells add controllingUnit.copy(controllingUnit.neighbors(index).location, controllingUnit.neighbors(index).cellType, controllingUnit.neighbors(index).neighbors)
+            possibleCells += controllingUnit.copy(controllingUnit.neighbors(index).location, controllingUnit.neighbors(index).cellType, controllingUnit.neighbors(index).neighbors)
           }
         }
       }
     }
-    possibleCells
+    possibleCells.toList
   }
 
   private def countLineLength(currentUnit: FieldUnit, index: Int): Int = {
@@ -101,18 +101,18 @@ object TrollService {
     Check cells for movement possibility
       return ArrayList
   */
-  private def checkForTrollsMovement(controllingUnit: FieldUnit): util.ArrayList[FieldUnit] = {
-    val possibleCells = new util.ArrayList[FieldUnit]()
+  private def checkForTrollsMovement(controllingUnit: FieldUnit): List[FieldUnit] = {
+    val possibleCells = ListBuffer[FieldUnit]()
     (4 to 7).foreach {
       i => {
         if (controllingUnit.neighbors.size > i) {
           val neighbor = controllingUnit.neighbors(i)
           if (isCellEmpty(neighbor)) {
-            possibleCells.add(neighbor)
+            possibleCells += neighbor
           }
         }
       }
     }
-    possibleCells
+    possibleCells.toList
   }
 }

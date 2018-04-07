@@ -1,7 +1,5 @@
 package ru.mirea.thud.common.model.messages
 
-import java.util
-
 import ru.mirea.thud.common.model.{FieldUnit, GameField, PlayerConnectionInfo, PlayerState}
 
 object ToClientMessages {
@@ -21,7 +19,7 @@ object ToServerMessages {
 
   case class MoveFiguresMessage(identifiers: PlayerIdentifiers, oldCell: FieldUnit, newCell: FieldUnit)
 
-  case class DeleteFiguresMessage(identifiers: PlayerIdentifiers, cells: util.ArrayList[FieldUnit])
+  case class DeleteFiguresMessage(identifiers: PlayerIdentifiers, cells: List[FieldUnit])
 
   case class PlayerConnectionServerMessage(info: PlayerConnectionInfo)
 

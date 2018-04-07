@@ -19,10 +19,9 @@ import scalafx.Includes._
 import scalafx.stage.Stage
 
 class FieldView extends jfxf.Initializable {
-  @jfxf.FXML private var fieldBox: VBox = _
-
   var curr_loc: Location = _
   var dialogStage: Stage = _
+  @jfxf.FXML private var fieldBox: VBox = _
   @jfxf.FXML private var suggestToFinish: jfxsc.Button = _
   @jfxf.FXML private var helpButton: jfxsc.Button = _
   /*Данные игроков*/
@@ -274,6 +273,26 @@ class FieldView extends jfxf.Initializable {
     viewLoaded(this)
   }
 
+  @jfxf.FXML private def handleOnMouseClicked(mouseEvent: MouseEvent) {
+    mouseEvent.getPickResult.getIntersectedNode match {
+      case rectangle: Rectangle => handleRectangle(rectangle)
+      case imageView: ImageView => handleImageView(imageView)
+      case _ =>
+    }
+  }
+
+  private def handleRectangle(rectangle: Rectangle): Unit = {
+    colorMovementCells(rectangle)
+    loadMovementScheme(rectangle.getId)
+  }
+
+  private def handleImageView(imageView: ImageView): Unit = {
+    colorMovementCells(imageView)
+    loadMovementScheme(imageView.getId)
+  }
+
+  private def colorMovementCells(imageView: ImageView): Unit = imageView.setStyle("-fx-fill:green")
+
   def updatePlayersDataFirstGame(player: PlayerState, enemy: PlayerState): Unit = {
     firstPlayerName.setText(player.name)
     firstPlayerFirstRole.setText(player.role.toString)
@@ -312,6 +331,28 @@ class FieldView extends jfxf.Initializable {
     svictory.setText(enemyPlayerVictories.toString)
   }
 
+  def highlightCell(id: String, mode: CellTargetMode.Value): Unit = mode match {
+    case ATTACK => getRectangleById(id) match {
+      case Some(rectangle) => colorAttackCells(rectangle)
+    }
+    case MOVE => getRectangleById(id) match {
+      case Some(rectangle) => colorMovementCells(rectangle)
+    }
+    case DEFAULT => getRectangleById(id) match {
+      case Some(rectangle) => returnOriginalField(rectangle)
+    }
+  }
+
+  private def colorMovementCells(rectangle: Rectangle): Unit = rectangle.setStyle("-fx-fill:green")
+
+  private def colorAttackCells(rectangle: Rectangle): Unit = rectangle.setStyle("-fx-fill:red")
+
+  private def getRectangleById(id: String): Option[Rectangle] = fieldBox.lookup(s"#$id") match {
+    case rectangle: Rectangle => Some(rectangle)
+  }
+
+  private def returnOriginalField(rectangle: Rectangle): Unit = rectangle.setStyle("Field.css")
+
   @jfxf.FXML private def suggestToExitTheGame(event: jfxe.ActionEvent) {
     val dialog = new SuggestToExitView
     dialog.showDialogSuggestToOffer()
@@ -319,39 +360,9 @@ class FieldView extends jfxf.Initializable {
 
   @jfxf.FXML private def showHelpButton(event: jfxe.ActionEvent): Unit = showHelpView()
 
-  @jfxf.FXML private def handleOnMouseClicked(mouseEvent: MouseEvent) {
-    mouseEvent.getPickResult.getIntersectedNode match {
-      case rectangle: Rectangle => handleRectangle(rectangle)
-      case imageView: ImageView => handleImageView(imageView)
-      case _ =>
-    }
+  private def getImageView(id: String): Option[ImageView] = fieldBox.lookup(s"#$id") match {
+    case imageView: ImageView => Some(imageView)
   }
-
-  private def handleRectangle(rectangle: Rectangle): Unit = {
-    colorMovementCells(rectangle)
-    loadMovementScheme(rectangle.getId)
-  }
-
-  private def handleImageView(imageView: ImageView): Unit = {
-    colorMovementCells(imageView)
-    loadMovementScheme(imageView.getId)
-  }
-
-  private def colorMovementCells(rectangle: Rectangle): Unit = rectangle.setStyle("-fx-fill:green")
-
-  private def colorMovementCells(imageView: ImageView): Unit = imageView.setStyle("-fx-fill:green")
-
-  private def colorAttackCells(rectangle: Rectangle): Unit = rectangle.setStyle("-fx-fill:red")
-
-  def highlighCell(id: String, mode: CellTargetMode.Value): Unit = mode match {
-    case ATTACK => colorAttackCells(getRectangleById(id))
-    case MOVE => colorMovementCells(getRectangleById(id))
-    case DEFAULT => returnOriginalField(getRectangleById(id))
-  }
-
-  private def getRectangleById(id: String) = fieldBox.lookup(s"#$id").asInstanceOf[Rectangle]
-
-  private def returnOriginalField(rectangle: Rectangle): Unit = rectangle.setStyle("Field.css")
 
   private def deleteFigure(imageView: ImageView): Unit = imageView.setVisible(false)
 }

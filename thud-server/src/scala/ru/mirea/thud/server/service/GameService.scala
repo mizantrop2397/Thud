@@ -30,7 +30,7 @@ class GameService extends Actor {
     case PlayerDisconnectionServerMessage(identifiers) => disconnectPlayer(identifiers)
     case DrawOfferingServerMessage(identifiers) => offerDrawToEnemyPlayer(identifiers)
     case MoveFiguresMessage(identifiers, fromCell, toCell) => moveFigures(identifiers, fromCell, toCell)
-    case DeleteFiguresMessage(identifiers, cells) => deleteFigures(identifiers, cells.asScala toList)
+    case DeleteFiguresMessage(identifiers, cells) => deleteFigures(identifiers, cells toList)
   }
 
   private def handleNewPlayer(newPlayerInfo: PlayerConnectionInfo): Unit = {

@@ -6,6 +6,8 @@ import ru.mirea.thud.client.controller.FieldViewController._
 import ru.mirea.thud.client.controller.StartViewController.closeStartView
 import ru.mirea.thud.client.model.messages._
 import ru.mirea.thud.client.service.CommonUnitActions.setHighlightedCellsToDefault
+import ru.mirea.thud.client.service.DwarfService.{calculateDwarfMovement, getDwarfCellsToHighlightAttack, getDwarfCellsToHighlightMove, processDwarfAttack}
+import ru.mirea.thud.client.service.TrollService.{calculateTrollMovement, getTrollCellsToHighlightAttack, getTrollCellsToHighlightMove, processTrollAttack}
 import ru.mirea.thud.client.state.GameState
 import ru.mirea.thud.common.constants.FieldCellType._
 import ru.mirea.thud.common.model.messages.PlayerIdentifiers
@@ -24,22 +26,22 @@ class PlayerService extends Actor {
 
   private def performAttack(attackedUnit: FieldUnit): Unit = {
     attackedUnit.cellType match {
-      case DWARF => DwarfService.processAttack(attackedUnit)
-      case TROLL => TrollService.processTrollAttack(attackedUnit)
+      case DWARF => processDwarfAttack(attackedUnit)
+      case TROLL => processTrollAttack(attackedUnit)
     }
   }
 
   private def performMovement(unit: FieldUnit, newCell: FieldUnit): Unit = {
     unit.cellType match {
-      case DWARF => setHighlightedCellsToDefault(DwarfService.getCellsToHighlightAttack, DwarfService.getCellsToHighlightMove)
-      case TROLL => setHighlightedCellsToDefault(TrollService.getCellsToHighlightAttack, TrollService.getCellsToHighlightMove)
+      case DWARF => setHighlightedCellsToDefault(getDwarfCellsToHighlightAttack, getDwarfCellsToHighlightMove)
+      case TROLL => setHighlightedCellsToDefault(getTrollCellsToHighlightAttack, getTrollCellsToHighlightMove)
     }
     gameService ! MoveFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), unit, newCell)
   }
 
   private def calculateMovement(unit: FieldUnit): Unit = unit.cellType match {
-    case DWARF => DwarfService.calculateMovement(unit)
-    case TROLL => TrollService.calculateTrollMovement(unit)
+    case DWARF => calculateDwarfMovement(unit)
+    case TROLL => calculateTrollMovement(unit)
   }
 
 

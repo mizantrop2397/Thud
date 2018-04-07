@@ -30,23 +30,23 @@ object FieldViewController {
 
   def loadSecondGamePlayersData(): Unit = view match {
     case Some(v) => v.updatePlayersDataSecondGame(GameState.playerState, GameState.enemyPlayerState)
+    case _ =>
   }
 
   def loadMovementScheme(id: String): Unit = getUnitIdByRectangle(id) match {
     case Some(foundId) => playerService ! CalculateMovementSchemeMessage(GameState.field units foundId)
     case None => getUnitIdByImageView(id) match {
       case Some(foundId) => playerService ! CalculateMovementSchemeMessage(GameState.field units foundId)
-      case None =>
+      case _ =>
     }
   }
 
   def highlightCells(cells: Map[Location, CellTargetMode.Value]): Unit = view match {
     case Some(v) => cells foreach { case (location, mode) =>
       GameState.field.units find { case (_, unit) => unit.location == location } match {
-        case Some(unit) => v highlighCell(getRectangleId(unit._1), mode)
-        case None =>
+        case Some(unit) => v highlightCell(getRectangleId(unit._1), mode)
+        case _ =>
       }
     }
-    case None =>
   }
 }

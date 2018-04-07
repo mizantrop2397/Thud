@@ -1,8 +1,54 @@
 package ru.mirea.thud.server.constants
 
+import ru.mirea.thud.common.constants.FieldCellType.{DWARF, ROCK, TROLL}
 import ru.mirea.thud.common.model.Location
 
 object ServerConstants {
+  val DEFAULT_CELL_TYPES = Map(
+    "UNIT_1" -> DWARF,
+    "UNIT_2" -> DWARF,
+    "UNIT_4" -> DWARF,
+    "UNIT_5" -> DWARF,
+    "UNIT_6" -> DWARF,
+    "UNIT_12" -> DWARF,
+    "UNIT_13" -> DWARF,
+    "UNIT_21" -> DWARF,
+    "UNIT_22" -> DWARF,
+    "UNIT_32" -> DWARF,
+    "UNIT_33" -> DWARF,
+    "UNIT_45" -> DWARF,
+    "UNIT_46" -> DWARF,
+    "UNIT_60" -> DWARF,
+    "UNIT_61" -> DWARF,
+    "UNIT_75" -> DWARF,
+    "UNIT_91" -> DWARF,
+    "UNIT_105" -> DWARF,
+    "UNIT_106" -> DWARF,
+    "UNIT_120" -> DWARF,
+    "UNIT_121" -> DWARF,
+    "UNIT_133" -> DWARF,
+    "UNIT_134" -> DWARF,
+    "UNIT_144" -> DWARF,
+    "UNIT_145" -> DWARF,
+    "UNIT_153" -> DWARF,
+    "UNIT_154" -> DWARF,
+    "UNIT_160" -> DWARF,
+    "UNIT_161" -> DWARF,
+    "UNIT_162" -> DWARF,
+    "UNIT_164" -> DWARF,
+    "UNIT_165" -> DWARF,
+
+    "UNIT_67" -> TROLL,
+    "UNIT_68" -> TROLL,
+    "UNIT_69" -> TROLL,
+    "UNIT_82" -> TROLL,
+    "UNIT_84" -> TROLL,
+    "UNIT_97" -> TROLL,
+    "UNIT_98" -> TROLL,
+    "UNIT_99" -> TROLL,
+    "UNIT_83" -> ROCK
+  )
+
   val DEFAULT_UNIT_LOCATIONS = Map(
     "UNIT_1" -> Location(1, 6),
     "UNIT_2" -> Location(1, 7),

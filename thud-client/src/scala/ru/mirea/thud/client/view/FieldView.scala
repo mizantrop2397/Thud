@@ -14,6 +14,8 @@ import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, DEFAULT, MOVE}
 import ru.mirea.thud.client.controller.FieldViewController._
 import ru.mirea.thud.client.controller.HelpViewController.showHelpView
+import ru.mirea.thud.client.mapping.UnitToCellMapping.getRectangleId
+import ru.mirea.thud.client.state.GameState
 import ru.mirea.thud.common.model.{Location, PlayerState}
 import scalafx.Includes._
 import scalafx.stage.Stage
@@ -282,12 +284,12 @@ class FieldView extends jfxf.Initializable {
   }
 
   private def handleRectangle(rectangle: Rectangle): Unit = {
-    colorMovementCells(rectangle)
+    GameState.field.units.keys foreach { id => returnOriginalField(getRectangleById(getRectangleId(id)).get) }
     loadMovementScheme(rectangle.getId)
   }
 
   private def handleImageView(imageView: ImageView): Unit = {
-    colorMovementCells(imageView)
+    GameState.field.units.keys foreach { id => returnOriginalField(getRectangleById(getRectangleId(id)).get) }
     loadMovementScheme(imageView.getId)
   }
 
@@ -354,8 +356,7 @@ class FieldView extends jfxf.Initializable {
   private def returnOriginalField(rectangle: Rectangle): Unit = rectangle.setStyle("Field.css")
 
   @jfxf.FXML private def suggestToExitTheGame(event: jfxe.ActionEvent) {
-    val dialog = new SuggestToExitView
-    dialog.showDialogSuggestToOffer()
+    new SuggestToExitView().showDialogSuggestToOffer()
   }
 
   @jfxf.FXML private def showHelpButton(event: jfxe.ActionEvent): Unit = showHelpView()

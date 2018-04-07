@@ -6,6 +6,7 @@ import java.util.ResourceBundle
 import javafx.scene.{control => jfxsc}
 import javafx.{event => jfxe, fxml => jfxf}
 import ru.mirea.thud.client.loader.ViewLoader.loadDialogSuggestToOffer
+import ru.mirea.thud.client.state.GameState
 import scalafx.Includes._
 import scalafx.scene.Scene
 import scalafx.stage.Stage
@@ -25,7 +26,10 @@ class SuggestToExitView extends jfxf.Initializable {
     dialogStage.showAndWait()
   }
 
-  override def initialize(location: URL, resources: ResourceBundle): Unit = {}
+  override def initialize(location: URL, resources: ResourceBundle): Unit = {
+    ViewHolder.score = GameState.playerState.score.toString
+    ViewHolder.name = GameState.playerState.name
+  }
 
   @jfxf.FXML private def yesButtonPressed(event: jfxe.ActionEvent) {
     System.out.println("Закрыть текущее окно. Открыть окно результата")

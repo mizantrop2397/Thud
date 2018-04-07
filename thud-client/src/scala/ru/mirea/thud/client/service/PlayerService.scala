@@ -29,6 +29,7 @@ class PlayerService extends Actor {
     attackedUnit.cellType match {
       case DWARF => processDwarfAttack(attackedUnit)
       case TROLL => processTrollAttack(attackedUnit)
+      case _ =>
     }
   }
 
@@ -36,6 +37,7 @@ class PlayerService extends Actor {
     unit.cellType match {
       case DWARF => setHighlightedCellsToDefault(getDwarfCellsToHighlightAttack, getDwarfCellsToHighlightMove)
       case TROLL => setHighlightedCellsToDefault(getTrollCellsToHighlightAttack, getTrollCellsToHighlightMove)
+      case _ =>
     }
     gameService ! MoveFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), unit, newCell)
   }
@@ -43,6 +45,7 @@ class PlayerService extends Actor {
   private def calculateMovement(unit: FieldUnit): Unit = unit.cellType match {
     case DWARF => if(GameState.playerState.role == PlayerRole.DWARF) calculateDwarfMovement(unit)
     case TROLL => if(GameState.playerState.role == PlayerRole.TROLL) calculateTrollMovement(unit)
+    case _ =>
   }
 
 

@@ -5,437 +5,437 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1099.0" styleClass="background" stylesheets="@../style/Field.css" xmlns="http://javafx.com/javafx/8" fx:controller="ru.mirea.thud.client.view.FieldView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1099.0" styleClass="background" stylesheets="@../style/Field.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.mirea.thud.client.view.FieldView">
     <children>
-        <VBox layoutX="35.0" layoutY="23.0" prefHeight="577.0" prefWidth="585.0" stylesheets="@../style/Field.css">
+        <VBox fx:id="fieldBox" layoutX="35.0" layoutY="23.0" prefHeight="577.0" prefWidth="585.0" stylesheets="@../style/Field.css">
             <children>
                 <Pane fx:id="row_1" prefHeight="42.0" prefWidth="599.0">
                     <children>
-                        <Rectangle fx:id="sq_1_6" arcHeight="5.0" arcWidth="5.0" fill="#1f93ffef" height="40.0" layoutX="195.0" layoutY="-2.0" onMouseClicked="#handleOnMouseClicked" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_1_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_1_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" layoutY="-2.0" onMouseClicked="#handleOnMouseClicked" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_1_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_1_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="197.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true"/>
+                        <Rectangle fx:id="sq_1_6" arcHeight="5.0" arcWidth="5.0" fill="#1f93ffef" height="40.0" layoutX="195.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_1_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_1_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_1_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_1_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="197.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="dr_2" fitHeight="40.0" fitWidth="40.0" layoutX="234.0" layoutY="-5.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_3" fitHeight="40.0" fitWidth="40.0" layoutX="312.0" layoutY="-5.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_4" fitHeight="40.0" fitWidth="40.0" layoutX="349.0" layoutY="-5.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_1" fitHeight="40.0" fitWidth="40.0" layoutX="194.0" layoutY="-3.0" nodeOrientation="INHERIT" onMouseClicked="#handleOnMouseClicked" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_2" prefHeight="34.0" prefWidth="738.0">
                     <children>
-                        <Rectangle fx:id="sq_2_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_2_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_2_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_2_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_2_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_2_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_2_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_2_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_2_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_2_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_2_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_2_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_2_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_2_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_5" fitHeight="40.0" fitWidth="40.0" layoutX="156.0" layoutY="-7.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_6" fitHeight="40.0" fitWidth="40.0" layoutX="388.0" layoutY="-7.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_3" prefHeight="38.0" prefWidth="737.0">
                     <children>
-                        <Rectangle fx:id="sq_3_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_3_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_3_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_3_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_3_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_3_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_3_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_3_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_3_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_3_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_3_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_3_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_3_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_3_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_3_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_3_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_3_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_3_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_7" fitHeight="40.0" fitWidth="40.0" layoutX="116.0" layoutY="-3.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_8" fitHeight="40.0" fitWidth="40.0" layoutX="429.0" layoutY="-3.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_4" prefHeight="37.0" prefWidth="589.0">
                     <children>
-                        <Rectangle fx:id="sq_4_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_4_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_4_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_4_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_4_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_4_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_4_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_4_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_4_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_4_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_4_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_4_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_4_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_4_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_4_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_4_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_4_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_4_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_4_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_4_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_4_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_4_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_9" fitHeight="40.0" fitWidth="40.0" layoutX="78.0" layoutY="-4.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_10" fitHeight="40.0" fitWidth="40.0" layoutX="467.0" layoutY="-3.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_5" prefHeight="39.0" prefWidth="736.0">
                     <children>
-                        <Rectangle fx:id="sq_5_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_5_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_5_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_5_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_5_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_5_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_5_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_5_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_5_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_5_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_5_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_5_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_5_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_5_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_5_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_5_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_5_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_5_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_5_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_5_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_5_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_5_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_5_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_5_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_5_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_5_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_11" fitHeight="40.0" fitWidth="40.0" layoutX="39.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_12" fitHeight="40.0" fitWidth="40.0" layoutX="507.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_6" prefHeight="38.0" prefWidth="732.0">
                     <children>
-                        <Rectangle fx:id="sq_6_1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_6_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_6_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_6_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_6_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_6_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_6_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_6_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_6_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_6_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_6_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_6_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_6_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_6_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_6_15" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="544.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_6_1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_6_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_6_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_6_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_6_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_6_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_6_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_6_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_6_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_6_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_6_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_6_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_6_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_6_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_6_15" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="544.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_13" fitHeight="40.0" fitWidth="40.0" layoutY="-3.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_14" fitHeight="40.0" fitWidth="40.0" layoutX="545.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_7" prefHeight="39.0" prefWidth="737.0">
                     <children>
-                        <Rectangle fx:id="sq_7_1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_7_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_7_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_7_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_7_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_7_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_7_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_7_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_7_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_7_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_7_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_7_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_7_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_7_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_7_15" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="544.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="234.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                        <Rectangle fx:id="sq_7_1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_7_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_7_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_7_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_7_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_7_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_7_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_7_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_7_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_7_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_7_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_7_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_7_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_7_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_7_15" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="544.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <ImageView fx:id="t_1" fitHeight="40.0" fitWidth="40.0" layoutX="234.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/t.png"/>
+                                <Image url="@../style/t.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="273.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="t_2" fitHeight="40.0" fitWidth="40.0" layoutX="273.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/t.png"/>
+                                <Image url="@../style/t.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="312.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="t_3" fitHeight="40.0" fitWidth="40.0" layoutX="312.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/t.png"/>
+                                <Image url="@../style/t.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_15" fitHeight="40.0" fitWidth="40.0" layoutX="1.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_16" fitHeight="40.0" fitWidth="40.0" layoutX="545.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_8" prefHeight="39.0" prefWidth="737.0">
                     <children>
-                        <Rectangle fx:id="sq_8_1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_8_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_8_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_8_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_8_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_8_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_8_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_8_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_8_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_8_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_8_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_8_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_8_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_8_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_8_15" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="544.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="234.0" pickOnBounds="true" preserveRatio="true">
+                        <Rectangle fx:id="sq_8_1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_8_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_8_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_8_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_8_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_8_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_8_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_8_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_8_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_8_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_8_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_8_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_8_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_8_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_8_15" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="544.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <ImageView fx:id="t_8" fitHeight="40.0" fitWidth="40.0" layoutX="234.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/t.png"/>
+                                <Image url="@../style/t.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="311.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="t_4" fitHeight="40.0" fitWidth="40.0" layoutX="311.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/t.png"/>
+                                <Image url="@../style/t.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="274.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="sk" fitHeight="40.0" fitWidth="40.0" layoutX="274.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/rock.png"/>
+                                <Image url="@../style/rock.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_9" prefHeight="39.0" prefWidth="738.0">
                     <children>
-                        <Rectangle fx:id="sq_9_1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_9_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_9_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_9_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_9_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_9_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_9_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_9_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_9_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_9_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_9_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_9_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_9_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_9_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_9_15" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="544.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="234.0" pickOnBounds="true" preserveRatio="true">
+                        <Rectangle fx:id="sq_9_1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_9_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_9_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_9_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_9_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_9_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_9_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_9_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_9_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_9_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_9_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_9_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_9_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_9_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_9_15" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="544.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <ImageView fx:id="t_7" fitHeight="40.0" fitWidth="40.0" layoutX="234.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/t.png"/>
+                                <Image url="@../style/t.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="273.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="t_6" fitHeight="40.0" fitWidth="40.0" layoutX="273.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/t.png"/>
+                                <Image url="@../style/t.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="311.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="t_5" fitHeight="40.0" fitWidth="40.0" layoutX="311.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/t.png"/>
+                                <Image url="@../style/t.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_17" fitHeight="40.0" fitWidth="40.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_18" fitHeight="40.0" fitWidth="40.0" layoutX="546.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_10" prefHeight="39.0" prefWidth="737.0">
                     <children>
-                        <Rectangle fx:id="sq_10_1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_10_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_10_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_10_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_10_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_10_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_10_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_10_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_10_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_10_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_10_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_10_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_10_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_10_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_10_15" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="39.0" layoutX="544.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_10_1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_10_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_10_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_10_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_10_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_10_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_10_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_10_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_10_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_10_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_10_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_10_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_10_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_10_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_10_15" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="39.0" layoutX="544.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_19" fitHeight="40.0" fitWidth="40.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_20" fitHeight="40.0" fitWidth="40.0" layoutX="546.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_11" prefHeight="39.0" prefWidth="734.0">
                     <children>
-                        <Rectangle fx:id="sq_11_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_11_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_11_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_11_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_11_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_11_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_11_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_11_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_11_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_11_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_11_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_11_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_11_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_11_2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="39.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_11_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_11_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_11_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_11_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_11_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_11_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_11_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_11_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_11_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_11_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_11_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_11_14" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="505.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_21" fitHeight="40.0" fitWidth="40.0" layoutX="39.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_22" fitHeight="40.0" fitWidth="40.0" layoutX="507.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_12" prefHeight="39.0" prefWidth="741.0">
                     <children>
-                        <Rectangle fx:id="sq_12_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_12_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_12_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_12_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_12_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_12_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_12_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_12_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_12_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_12_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_12_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_12_3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="78.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_12_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_12_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_12_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_12_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_12_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_12_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_12_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_12_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_12_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="466.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_12_13" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_23" fitHeight="40.0" fitWidth="40.0" layoutX="77.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_24" fitHeight="40.0" fitWidth="40.0" layoutX="466.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_13" prefHeight="38.0" prefWidth="736.0">
                     <children>
-                        <Rectangle fx:id="sq_13_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_13_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_13_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_13_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_13_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_13_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_13_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_13_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_13_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_13_4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="117.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_13_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_13_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_13_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_13_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_13_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_13_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_13_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_13_12" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="427.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_25" fitHeight="40.0" fitWidth="40.0" layoutX="118.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_26" fitHeight="40.0" fitWidth="40.0" layoutX="427.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_14" prefHeight="39.0" prefWidth="737.0">
                     <children>
-                        <Rectangle fx:id="sq_14_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_14_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_14_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_14_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_14_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_14_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_14_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_14_5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="156.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_14_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_14_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_14_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_14_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_14_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_14_11" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="388.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_27" fitHeight="40.0" fitWidth="40.0" layoutX="157.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_28" fitHeight="40.0" fitWidth="40.0" layoutX="388.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
                 <Pane fx:id="row_15" prefHeight="0.0" prefWidth="584.0">
                     <children>
-                        <Rectangle fx:id="sq_15_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_15_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_15_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
-                        <Rectangle fx:id="sq_15_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0"/>
-                        <Rectangle fx:id="sq_15_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0"/>
+                        <Rectangle fx:id="sq_15_6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="195.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_15_7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="234.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_15_8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="273.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
+                        <Rectangle fx:id="sq_15_9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="312.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square" width="40.0" />
+                        <Rectangle fx:id="sq_15_10" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="349.0" stroke="BLACK" strokeType="INSIDE" styleClass="board_square_lt" width="40.0" />
                         <ImageView fx:id="dr_29" fitHeight="40.0" fitWidth="40.0" layoutX="195.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_32" fitHeight="40.0" fitWidth="40.0" layoutX="349.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_30" fitHeight="40.0" fitWidth="40.0" layoutX="233.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                         <ImageView fx:id="dr_31" fitHeight="40.0" fitWidth="40.0" layoutX="311.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../style/d.png"/>
+                                <Image url="@../style/d.png" />
                             </image>
                         </ImageView>
                     </children>
@@ -444,155 +444,155 @@
         </VBox>
         <GridPane layoutX="656.0" layoutY="69.0" prefHeight="201.0" prefWidth="404.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" text="Role" GridPane.rowIndex="1">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" text="Score" GridPane.rowIndex="2">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" text="First part" textFill="#0d49b8" GridPane.columnIndex="1">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" text="Second part" textFill="#0d49b8" GridPane.columnIndex="2">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label fx:id="firstPlayerFirstScore" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label fx:id="firstPlayerSecondRole" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label fx:id="firstPlayerSecondScore" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" text="Total score:" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <font>
-                        <Font name="System Italic" size="21.0"/>
+                        <Font name="System Italic" size="21.0" />
                     </font>
                 </Label>
                 <Label fx:id="firstPlayerFirstRole" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label fx:id="firstPlayerTotalScore" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
             </children>
         </GridPane>
-        <Button fx:id="suggestToFinish" layoutX="744.0" layoutY="561.0" mnemonicParsing="false" onAction="#suggestToExitTheGame" prefHeight="45.0" prefWidth="297.0" text="Suggest to finish the game"/>
+        <Button fx:id="suggestToFinish" layoutX="744.0" layoutY="561.0" mnemonicParsing="false" onAction="#suggestToExitTheGame" prefHeight="45.0" prefWidth="297.0" text="Suggest to finish the game" />
         <GridPane layoutX="656.0" layoutY="341.0" prefHeight="201.0" prefWidth="404.0">
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" text="Role" GridPane.rowIndex="1">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" text="Score" GridPane.rowIndex="2">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" text="First part" textFill="#0d49b8" GridPane.columnIndex="1">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" text="Second part" textFill="#0d49b8" GridPane.columnIndex="2">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label fx:id="secondPlayerFirstScore" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label fx:id="secondPlayerSecondRole" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label fx:id="secondPlayerSecondScore" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" text="Total score:" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <font>
-                        <Font name="System Italic" size="21.0"/>
+                        <Font name="System Italic" size="21.0" />
                     </font>
                 </Label>
                 <Label fx:id="secondPlayerFirstRole" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
                 <Label fx:id="secondPlayerTotalScore" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="130.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                     <font>
-                        <Font name="System Bold" size="21.0"/>
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Label>
             </children>
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
         </GridPane>
         <Label fx:id="secondPlayerName" alignment="CENTER" contentDisplay="CENTER" layoutX="783.0" layoutY="315.0" prefHeight="31.0" prefWidth="271.0" text="Second Name" textFill="#b70e0e">
             <font>
-                <Font name="System Bold" size="21.0"/>
+                <Font name="System Bold" size="21.0" />
             </font>
         </Label>
         <Label fx:id="firstPlayerName" alignment="CENTER" contentDisplay="CENTER" layoutX="750.0" layoutY="40.0" prefHeight="31.0" prefWidth="322.0" text="First Name" textFill="#b70e0e">
             <font>
-                <Font name="System Bold" size="21.0"/>
+                <Font name="System Bold" size="21.0" />
             </font>
         </Label>
-        <Button fx:id="helpButton" layoutX="1038.0" layoutY="6.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showHelpButton" prefHeight="42.0" prefWidth="51.0" text="?"/>
+        <Button fx:id="helpButton" layoutX="1038.0" layoutY="6.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showHelpButton" prefHeight="42.0" prefWidth="51.0" text="?" />
         <Label fx:id="firstPlayerTotalScore2" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="130.0">
             <font>
-                <Font name="System Bold" size="21.0"/>
+                <Font name="System Bold" size="21.0" />
             </font>
         </Label>
-        <Label fx:id="fname" layoutX="708.0" layoutY="270.0" text="Name"/>
-        <Label fx:id="sname" layoutX="844.0" layoutY="270.0" text="Name"/>
-        <Label fx:id="fvictory" layoutX="981.0" layoutY="268.0" text="0"/>
-        <Label fx:id="svictory" layoutX="1017.0" layoutY="268.0" text="0"/>
-        <Label layoutX="1000.0" layoutY="266.0" prefHeight="31.0" prefWidth="12.0" text="/"/>
+        <Label fx:id="fname" layoutX="708.0" layoutY="270.0" text="Name" />
+        <Label fx:id="sname" layoutX="844.0" layoutY="270.0" text="Name" />
+        <Label fx:id="fvictory" layoutX="981.0" layoutY="268.0" text="0" />
+        <Label fx:id="svictory" layoutX="1017.0" layoutY="268.0" text="0" />
+        <Label layoutX="1000.0" layoutY="266.0" prefHeight="31.0" prefWidth="12.0" text="/" />
     </children>
 </AnchorPane>

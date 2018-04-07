@@ -26,6 +26,7 @@ class PlayerService extends Actor {
     attackedUnit.cellType match {
       case DWARF => DwarfService.processAttack(attackedUnit)
       case TROLL => TrollService.processTrollAttack(attackedUnit)
+      case EMPTY =>
     }
   }
 
@@ -33,6 +34,7 @@ class PlayerService extends Actor {
     unit.cellType match {
       case DWARF => setHighlightedCellsToDefault(DwarfService.getCellsToHighlightAttack, DwarfService.getCellsToHighlightMove)
       case TROLL => setHighlightedCellsToDefault(TrollService.getCellsToHighlightAttack, TrollService.getCellsToHighlightMove)
+      case EMPTY =>
     }
     gameService ! MoveFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), unit, newCell)
   }

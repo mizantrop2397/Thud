@@ -6,15 +6,19 @@ import java.util.ResourceBundle
 
 import javafx.scene.image.ImageView
 import javafx.scene.input.MouseEvent
+import javafx.scene.layout.VBox
 import javafx.scene.shape.Rectangle
 import javafx.scene.{control => jfxsc}
 import javafx.{event => jfxe, fxml => jfxf}
 import ru.mirea.thud.client.controller.FieldViewController._
 import ru.mirea.thud.client.controller.HelpViewController.showHelpView
 import ru.mirea.thud.common.model.{Location, PlayerState}
+import scalafx.Includes._
 import scalafx.stage.Stage
 
 class FieldView extends jfxf.Initializable {
+  @jfxf.FXML private var fieldBox: VBox = _
+
   var curr_loc: Location = _
   var dialogStage: Stage = _
   @jfxf.FXML private var suggestToFinish: jfxsc.Button = _
@@ -264,6 +268,7 @@ class FieldView extends jfxf.Initializable {
 
 
   override def initialize(location: URL, resources: ResourceBundle): Unit = {
+    fieldBox.children.forEach { child => child.onMouseClicked = event => handleOnMouseClicked(event) }
     viewLoaded(this)
   }
 
@@ -326,10 +331,13 @@ class FieldView extends jfxf.Initializable {
   }
 
   private def handleImageView(imageView: ImageView): Unit = {
-    val id = imageView.getId
+    colorMovementCells(imageView)
+    loadMovementScheme(imageView.getId)
   }
 
   private def colorMovementCells(rectangle: Rectangle): Unit = rectangle.setStyle("-fx-fill:green")
+
+  private def colorMovementCells(imageView: ImageView): Unit = imageView.setStyle("-fx-fill:green")
 
   private def colorAttackCells(rectangle: Rectangle): Unit = rectangle.setStyle("-fx-fill:red")
 
@@ -337,3 +345,4 @@ class FieldView extends jfxf.Initializable {
 
   private def deleteFigure(imageView: ImageView): Unit = imageView.setVisible(false)
 }
+

@@ -81,8 +81,8 @@ object DwarfService {
 
   private def countLineLength(currentUnit: FieldUnit, index: Int): Int = {
     var count = 0
-    if (currentUnit.neighbors(index).cellType.equals(DWARF)) {
-      count = countLineLength(currentUnit.neighbors(index), index)
+    if (currentUnit.neighbors.size < index && currentUnit.neighbors(index).cellType.equals(DWARF)) {
+      count = countLineLength(currentUnit.neighbors(count), index)
     }
     count + 1
   }

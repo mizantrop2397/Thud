@@ -62,23 +62,25 @@ object TrollService {
     val possibleCells = new util.ArrayList[FieldUnit]()
     (0 to 3).foreach {
       i => {
-        var count = 0
-        val neighbor = controllingUnit.neighbors(i)
-        if (isCellTroll(neighbor) && ((i < 2 && controllingUnit.neighbors(i + 2).cellType.equals(TROLL)) && (i > 2 && controllingUnit.neighbors(i - 2).cellType.equals(TROLL)))) {
-          count = countLineLength(neighbor, i)
-        }
-        var index = i
-        if (i < 2) {
-          index = index + 2
-        } else {
-          index = index - 2
-        }
-        (0 to count).foreach {
-          j => {
-            if (controllingUnit.neighbors(index).cellType.equals(EMPTY)) {
-              possibleCells.add(controllingUnit.neighbors(index))
+        if (controllingUnit.neighbors.size < i) {
+          var count = 0
+          val neighbor = controllingUnit.neighbors(i)
+          if (isCellTroll(neighbor) && ((i < 2 && controllingUnit.neighbors(i + 2).cellType.equals(TROLL)) && (i > 2 && controllingUnit.neighbors(i - 2).cellType.equals(TROLL)))) {
+            count = countLineLength(neighbor, i)
+          }
+          var index = i
+          if (i < 2) {
+            index = index + 2
+          } else {
+            index = index - 2
+          }
+          (0 to count).foreach {
+            j => {
+              if (controllingUnit.neighbors(index).cellType.equals(EMPTY)) {
+                possibleCells.add(controllingUnit.neighbors(index))
+              }
+              controllingUnit.copy(controllingUnit.neighbors(index).location, controllingUnit.neighbors(index).cellType, controllingUnit.neighbors(index).neighbors)
             }
-            controllingUnit.copy(controllingUnit.neighbors(index).location, controllingUnit.neighbors(index).cellType, controllingUnit.neighbors(index).neighbors)
           }
         }
       }
@@ -102,9 +104,11 @@ object TrollService {
     val possibleCells = new util.ArrayList[FieldUnit]()
     (4 to 7).foreach {
       i => {
-        val neighbor = controllingUnit.neighbors(i)
-        if (isCellEmpty(neighbor)) {
-          possibleCells.add(neighbor)
+        if (controllingUnit.neighbors.size > i) {
+          val neighbor = controllingUnit.neighbors(i)
+          if (isCellEmpty(neighbor)) {
+            possibleCells.add(neighbor)
+          }
         }
       }
     }

@@ -5,7 +5,7 @@ import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.controller.ExitViewController.{processExit, showExitView}
 import ru.mirea.thud.client.creator.StageFactory._
 import ru.mirea.thud.client.loader.ViewLoader.loadGameScreenViewForm
-import ru.mirea.thud.client.mapping.UnitToCellMapping.getUnitIdByRectangle
+import ru.mirea.thud.client.mapping.UnitToCellMapping.{getUnitIdByImageView, getUnitIdByRectangle}
 import ru.mirea.thud.client.model.messages.CalculateMovementSchemeMessage
 import ru.mirea.thud.client.state.GameState
 import ru.mirea.thud.client.view.FieldView
@@ -32,8 +32,12 @@ object FieldViewController {
     case Some(v) => v.updatePlayersDataSecondGame(GameState.playerState, GameState.enemyPlayerState)
   }
 
-  def loadMovementScheme(clickedRectangleId: String): Unit = getUnitIdByRectangle(clickedRectangleId) match {
-    case Some(id) => playerService ! CalculateMovementSchemeMessage(GameState.field units id)
+  def loadMovementScheme(id: String): Unit = getUnitIdByRectangle(id) match {
+    case Some(foundId) => playerService ! CalculateMovementSchemeMessage(GameState.field units foundId)
+    case None => getUnitIdByImageView(id) match {
+      case Some(foundId) => playerService ! CalculateMovementSchemeMessage(GameState.field units foundId)
+      case None =>
+    }
   }
 
   def highlighCells(cells: Map[Location, CellTargetMode.Value]): Unit = {

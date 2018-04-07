@@ -1,11 +1,11 @@
 package ru.mirea.thud.client.view
 
-import java.io.File
 import java.net.URL
 import java.util.ResourceBundle
 
 import javafx.scene.{control => jfxsc}
-import javafx.{event => jfxe, fxml => jfxf, scene => jfxs}
+import javafx.{event => jfxe, fxml => jfxf}
+import ru.mirea.thud.client.loader.ViewLoader._
 import scalafx.Includes._
 import scalafx.scene.Scene
 import scalafx.stage.Stage
@@ -19,11 +19,9 @@ class NotificationView extends jfxf.Initializable {
   @jfxf.FXML private var totalScore: jfxsc.Label = _
 
   def showNotification(): Unit = {
-    val resourcePath = "C:\\Users\\Анастасия\\Downloads\\Thud-master\\thud-client\\src\\resources"
-    val loader: jfxs.Parent = jfxf.FXMLLoader.load(new File(s"$resourcePath\\fxml\\NotificationDialogView.fxml").toURI.toURL)
     dialogStage = new Stage() {
       title = "Result"
-      scene = new Scene(loader)
+      scene = new Scene(loadNotificationDialogView())
       resizable = false
     }
     View.view = this

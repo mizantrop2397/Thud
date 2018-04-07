@@ -2,7 +2,7 @@ package ru.mirea.thud.client.service
 
 import java.util
 
-import ru.mirea.thud.client.app.ThudGame.fieldController
+import ru.mirea.thud.client.app.ThudGame.fieldService
 import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, MOVE}
 import ru.mirea.thud.client.model.Cell
 import ru.mirea.thud.client.model.messages.HighlightCellsMessage
@@ -32,7 +32,7 @@ object DwarfService {
     cellsToHighlightMove = checkForMovement(controllingUnit)
     val map = addToMap(cellsToHighlightAttack, ATTACK)
     map ++ addToMap(cellsToHighlightMove, MOVE)
-    fieldController ! HighlightCellsMessage(map)
+    fieldService ! HighlightCellsMessage(map)
   }
 
   /**

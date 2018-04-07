@@ -1,0 +1,48 @@
+package ru.mirea.thud.server.constants
+
+object ServerConstants {
+  val DEFAULT_UNIT_LOCATIONS = Map(
+    "UNIT_1" -> "dr_1",
+    "UNIT_2" -> "dr_2",
+    "UNIT_4" -> "dr_3",
+    "UNIT_5" -> "dr_4",
+    "UNIT_6" -> "dr_5",
+    "UNIT_12" -> "dr_6",
+    "UNIT_13" -> "dr_7",
+    "UNIT_21" -> "dr_8",
+    "UNIT_22" -> "dr_9",
+    "UNIT_32" -> "dr_10",
+    "UNIT_33" -> "dr_11",
+    "UNIT_45" -> "dr_12",
+    "UNIT_46" -> "dr_13",
+    "UNIT_60" -> "dr_14",
+    "UNIT_61" -> "dr_15",
+    "UNIT_75" -> "dr_16",
+    "UNIT_91" -> "dr_17",
+    "UNIT_105" -> "dr_18",
+    "UNIT_106" -> "dr_19",
+    "UNIT_120" -> "dr_20",
+    "UNIT_121" -> "dr_21",
+    "UNIT_133" -> "dr_22",
+    "UNIT_134" -> "dr_23",
+    "UNIT_144" -> "dr_24",
+    "UNIT_145" -> "dr_25",
+    "UNIT_153" -> "dr_26",
+    "UNIT_154" -> "dr_27",
+    "UNIT_160" -> "dr_28",
+    "UNIT_161" -> "dr_29",
+    "UNIT_162" -> "dr_30",
+    "UNIT_164" -> "dr_31",
+    "UNIT_165" -> "dr_32",
+
+    "UNIT_67" -> "t_1",
+    "UNIT_68" -> "t_2",
+    "UNIT_69" -> "t_3",
+    "UNIT_82" -> "t_4",
+    "UNIT_84" -> "t_5",
+    "UNIT_97" -> "t_6",
+    "UNIT_98" -> "t_7",
+    "UNIT_99" -> "t_8",
+    "UNIT_83" -> "sk"
+  )
+}

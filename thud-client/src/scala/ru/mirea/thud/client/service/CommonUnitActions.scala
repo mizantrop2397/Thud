@@ -2,7 +2,7 @@ package ru.mirea.thud.client.service
 
 import java.util
 
-import ru.mirea.thud.client.app.ThudGame.fieldController
+import ru.mirea.thud.client.app.ThudGame.fieldService
 import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.constants.CellTargetMode.DEFAULT
 import ru.mirea.thud.client.model.messages.HighlightCellsMessage
@@ -12,7 +12,7 @@ object CommonUnitActions {
   def setHighlightedCellsToDefault(arrayToAttack: util.ArrayList[FieldUnit], arrayToMove: util.ArrayList[FieldUnit]): Unit = {
     val map: Map[Location, CellTargetMode.Value] = addToMap(arrayToAttack, DEFAULT)
     map ++ addToMap(arrayToMove, DEFAULT)
-    fieldController ! HighlightCellsMessage(map)
+    fieldService ! HighlightCellsMessage(map)
   }
 
   /*

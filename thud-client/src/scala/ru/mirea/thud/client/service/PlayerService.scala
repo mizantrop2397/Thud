@@ -2,34 +2,54 @@ package ru.mirea.thud.client.service
 
 import akka.actor.Actor
 import ru.mirea.thud.client.app.ThudGame._
+import ru.mirea.thud.client.controller.FieldViewController._
+import ru.mirea.thud.client.controller.StartViewController.closeStartView
 import ru.mirea.thud.client.model.messages._
 import ru.mirea.thud.client.service.CommonUnitActions.setHighlightedCellsToDefault
 import ru.mirea.thud.client.state.GameState
 import ru.mirea.thud.common.constants.FieldCellType._
 import ru.mirea.thud.common.model.messages.PlayerIdentifiers
+import ru.mirea.thud.common.model.messages.ToClientMessages.SessionCreatedMessage
 import ru.mirea.thud.common.model.messages.ToServerMessages.MoveFiguresMessage
+import ru.mirea.thud.common.model.{FieldUnit, PlayerState}
+import scalafx.application.Platform.runLater
 
 class PlayerService extends Actor {
-
   override def receive: Receive = {
+    case SessionCreatedMessage(playerState, enemyPlayerState) => startGame(playerState, enemyPlayerState)
+    case CalculateMovementSchemeMessage(unit) => calculateMovement(unit)
+    case PerformMovementMessage(unit, newCell) => performMovement(unit, newCell)
+    case PerformAttackMessage(attackedUnit) => performAttack(attackedUnit)
+  }
 
-    case CalculateMovementSchemeMessage(unit) => unit.cellType match {
+  private def performAttack(attackedUnit: FieldUnit): Unit = {
+    attackedUnit.cellType match {
+      case DWARF => DwarfService.processAttack(attackedUnit)
+      case TROLL => TrollService.processTrollAttack(attackedUnit)
+    }
+  }
+
+  private def performMovement(unit: FieldUnit, newCell: FieldUnit): Unit = {
+    unit.cellType match {
+      case DWARF => setHighlightedCellsToDefault(DwarfService.getCellsToHighlightAttack, DwarfService.getCellsToHighlightMove)
+      case TROLL => setHighlightedCellsToDefault(TrollService.getCellsToHighlightAttack, TrollService.getCellsToHighlightMove)
+    }
+    gameService ! MoveFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), unit, newCell)
+  }
+
+  private def calculateMovement(unit: FieldUnit): Unit = {
+    unit.cellType match {
       case DWARF => DwarfService.calculateMovement(unit)
       case TROLL => TrollService.calculateTrollMovement(unit)
     }
+  }
 
-    case PerformMovementMessage(unit, newCell) =>
-      unit.cellType match {
-        case DWARF =>
-          setHighlightedCellsToDefault(DwarfService.getCellsToHighlightAttack, DwarfService.getCellsToHighlightMove)
-        case TROLL =>
-          setHighlightedCellsToDefault(TrollService.getCellsToHighlightAttack, TrollService.getCellsToHighlightMove)
-      }
-      gameService ! MoveFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), unit, newCell)
-
-    case PerformAttackMessage(attackedUnit) => attackedUnit.cellType match {
-      case DWARF => DwarfService.processAttack(attackedUnit)
-      case TROLL => TrollService.processTrollAttack(attackedUnit)
+  private def startGame(playerState: PlayerState, enemyPlayerState: PlayerState): Unit = {
+    GameState.playerState = playerState
+    GameState.enemyPlayerState = enemyPlayerState
+    runLater {
+      closeStartView()
+      showFieldView()
     }
   }
 }

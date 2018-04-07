@@ -2,7 +2,7 @@ package ru.mirea.thud.client.service
 
 import java.util
 
-import ru.mirea.thud.client.app.ThudGame.fieldController
+import ru.mirea.thud.client.app.ThudGame.fieldService
 import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, MOVE}
 import ru.mirea.thud.client.model.Cell._
@@ -37,7 +37,7 @@ object TrollService {
     cellsToHighlightMove = checkForTrollsMovement(controllingUnit)
     val map: Map[Location, CellTargetMode.Value] = addToMap(cellsToHighlightAttack, ATTACK)
     map ++ addToMap(cellsToHighlightMove, MOVE)
-    fieldController ! HighlightCellsMessage(map)
+    fieldService ! HighlightCellsMessage(map)
   }
 
   /*
@@ -50,7 +50,7 @@ object TrollService {
       dwarfsToKill.add(neighbor)
     }
     if (!dwarfsToKill.isEmpty) {
-      fieldController ! DeleteFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), dwarfsToKill)
+      fieldService ! DeleteFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), dwarfsToKill)
     }
   }
 

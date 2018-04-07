@@ -1,22 +1,17 @@
 package ru.mirea.thud.client.view
 
 
-import java.io.File
 import java.net.URL
 import java.util.ResourceBundle
 
-import javafx.event.EventHandler
 import javafx.scene.image.ImageView
 import javafx.scene.input.MouseEvent
 import javafx.scene.shape.Rectangle
 import javafx.scene.{control => jfxsc}
-import javafx.stage.WindowEvent
-import javafx.{event => jfxe, fxml => jfxf, scene => jfxs}
-import ru.mirea.thud.client.state.GameState
-import ru.mirea.thud.common.constants.PlayerRole
-import ru.mirea.thud.common.model.Location
-import scalafx.Includes._
-import scalafx.scene.Scene
+import javafx.{event => jfxe, fxml => jfxf}
+import ru.mirea.thud.client.controller.FieldViewController._
+import ru.mirea.thud.client.controller.HelpViewController.showHelpView
+import ru.mirea.thud.common.model.{Location, PlayerState}
 import scalafx.stage.Stage
 
 class FieldView extends jfxf.Initializable {
@@ -266,81 +261,48 @@ class FieldView extends jfxf.Initializable {
   @jfxf.FXML private var t_7: ImageView = _
   @jfxf.FXML private var t_8: ImageView = _
   @jfxf.FXML private var sk: ImageView = _
-  //  private val sq1_8:FieldUnit= new FieldUnit("sq_1_8", new Location (sq_1_8.getLayoutX,sq_1_8.getLayoutY), FieldCellType.EMPTY, List())
-  // private val sq2_6:FieldUnit= new FieldUnit("sq_2_6", new Location (sq_2_6.getLayoutX,sq_2_6.getLayoutY), FieldCellType.EMPTY, List())
 
-  //var field : Map[String,FieldUnit] = Map()
-  //field ++ sq1_8.id -> sq1_8
-
-  def colorAttackCells(rectangle: Rectangle): Unit = {
-    rectangle.setStyle("-fx-fill:red")
-  }
-
-  def returnOriginalField(rectangle: Rectangle): Unit = {
-    rectangle.setStyle("Field.css")
-  }
-
-  def deleteFigure(imageView: ImageView): Unit = {
-    imageView.setVisible(false)
-    /*удалить из списка или map*/
-  }
-
-  /*параметры получаем от сервера*/
-  def setData(firstName: String, firstRole: PlayerRole.Value, firstScore: Int, secondName: String, secondRole: PlayerRole.Value, secondScore: Int): Unit = {
-    firstPlayerName.setText(firstName)
-    firstPlayerFirstRole.setText(firstRole.toString)
-    firstPlayerSecondRole.setText(secondRole.toString)
-    firstPlayerFirstScore.setText(firstScore.toString)
-    firstPlayerSecondScore.setText(secondScore.toString)
-    secondPlayerName.setText(secondName)
-    secondPlayerFirstRole.setText(secondRole.toString)
-    secondPlayerSecondRole.setText(firstRole.toString)
-    secondPlayerFirstScore.setText(secondScore.toString)
-    secondPlayerSecondScore.setText(firstScore.toString)
-  }
-
-  def setTotalScore(firstScore: Int, secondScore: Int): Unit = {
-    firstPlayerTotalScore.setText(firstScore.toString)
-    secondPlayerTotalScore.setText(secondScore.toString)
-  }
-
-  /*получаем юнита, красим передвижение*/
-  /*
-def colorMovementCells(fieldUnit: FieldUnit,rectangle: Rectangle):Unit={
-  UnitToCellMapping.getRectangleId(fieldUnit.id)
-  rectangle.setStyle("-fx-fill:green")
-}*/
-
-  def changeScore(): Unit = {
-    //наверное нужна проверка на текущую партию
-    firstPlayerFirstScore.setText(GameState.playerState.score.toString)
-    firstPlayerSecondScore.setText(GameState.playerState.score.toString)
-    //  firstPlayerTotalScore.setText()
-    secondPlayerFirstScore.setText(GameState.enemyPlayerState.score.toString)
-    secondPlayerSecondScore.setText(GameState.enemyPlayerState.score.toString)
-    //  secondPlayerTotalScore.setText()
-
-  }
-
-  def setVictories(): Unit = {
-    fname.setText(GameState.playerState.name)
-    fvictory.setText(GameState.gameScore.playerVictories.toString)
-    sname.setText(GameState.enemyPlayerState.name)
-    svictory.setText(GameState.gameScore.enemyPlayerVictories.toString)
-  }
-
-  def showStartField(): Unit = {
-    val resourcePath = "C:\\Users\\Анастасия\\Downloads\\Thud-master\\thud-client\\src\\resources"
-    val loader: jfxs.Parent = jfxf.FXMLLoader.load(new File(s"$resourcePath\\fxml\\GameScreenViewForm.fxml").toURI.toURL)
-    var dialogStage = new Stage() {
-      scene = new Scene(loader)
-      resizable = false
-    }
-    GameView.gameview = this
-    dialogStage.showAndWait()
-  }
 
   override def initialize(location: URL, resources: ResourceBundle): Unit = {
+    viewLoaded(this)
+  }
+
+  def updatePlayersDataFirstGame(player: PlayerState, enemy: PlayerState): Unit = {
+    firstPlayerName.setText(player.name)
+    firstPlayerFirstRole.setText(player.role.toString)
+    firstPlayerFirstScore.setText(player.score.toString)
+    secondPlayerName.setText(enemy.name)
+    secondPlayerFirstRole.setText(enemy.role.toString)
+    secondPlayerFirstScore.setText(enemy.score.toString)
+    fname.setText(player.name)
+    sname.setText(enemy.name)
+  }
+
+  def updatePlayersDataSecondGame(player: PlayerState, enemy: PlayerState): Unit = {
+    firstPlayerSecondRole.setText(player.role.toString)
+    firstPlayerSecondScore.setText(player.score.toString)
+    secondPlayerSecondRole.setText(enemy.role.toString)
+    secondPlayerSecondScore.setText(enemy.score.toString)
+  }
+
+  def updateTotalScore(playerScore: Int, enemyScore: Int): Unit = {
+    firstPlayerTotalScore.setText(playerScore.toString)
+    secondPlayerTotalScore.setText(enemyScore.toString)
+  }
+
+  def updateScoreFirstGame(playerScore: Int, enemyScore: Int): Unit = {
+    firstPlayerFirstScore.setText(playerScore.toString)
+    secondPlayerFirstScore.setText(enemyScore.toString)
+  }
+
+  def updateScoreSecondGame(playerScore: Int, enemyScore: Int): Unit = {
+    firstPlayerSecondScore.setText(playerScore.toString)
+    secondPlayerSecondScore.setText(enemyScore.toString)
+  }
+
+  def updateVictories(playerVictories: Int, enemyPlayerVictories: Int): Unit = {
+    fvictory.setText(playerVictories.toString)
+    svictory.setText(enemyPlayerVictories.toString)
   }
 
   @jfxf.FXML private def suggestToExitTheGame(event: jfxe.ActionEvent) {
@@ -348,23 +310,7 @@ def colorMovementCells(fieldUnit: FieldUnit,rectangle: Rectangle):Unit={
     dialog.showDialogSuggestToOffer()
   }
 
-  private def showNotificationDialog(playerName: String, playerScore: String): Unit = {
-    View.name = playerName
-    View.score = playerScore
-    val notif = new NotificationView
-    notif.showNotification()
-  }
-
-  private def showWinnerDialog(playerScore: String): Unit = {
-    WinStage.score = playerScore
-    val win = new WinView
-    win.showWinnerDialog()
-  }
-
-  @jfxf.FXML private def showHelpButton(event: jfxe.ActionEvent) {
-    val help = new HelpView
-    help.showHelpDialog()
-  }
+  @jfxf.FXML private def showHelpButton(event: jfxe.ActionEvent): Unit = showHelpView()
 
   @jfxf.FXML private def handleOnMouseClicked(mouseEvent: MouseEvent) {
     mouseEvent.getPickResult.getIntersectedNode match {
@@ -372,42 +318,22 @@ def colorMovementCells(fieldUnit: FieldUnit,rectangle: Rectangle):Unit={
       case imageView: ImageView => handleImageView(imageView)
       case _ =>
     }
-
-
-    /*не срабатывает*/
-    GameView.gameview.dialogStage.setOnCloseRequest(new EventHandler[WindowEvent] {
-      override def handle(event: WindowEvent) = {
-        val exit = new ExitView
-        exit.showExitView()
-      }
-    })
-
-    //ThudGame.gameController ! CalculateMovementSchemeMessage(unit)
-    //System.out.print(mouseEvent.getSource.getClass)
-    // colorMovementCells(sq_1_6)
-    // System.out.println(mouseEvent.getPickResult.getIntersectedNode.id())
   }
 
-  def handleRectangle(rectangle: Rectangle) = {
+  private def handleRectangle(rectangle: Rectangle): Unit = {
     colorMovementCells(rectangle)
-    val id = rectangle.getId
-    //  val unit = GameState.field.units(id)
-    //  ThudGame.playerController ! CalculateMovementSchemeMessage(unit)
+    loadMovementScheme(rectangle.getId)
   }
 
-  def colorMovementCells(rectangle: Rectangle): Unit = {
-    rectangle.setStyle("-fx-fill:green")
-  }
-
-  def handleImageView(imageView: ImageView) = {
+  private def handleImageView(imageView: ImageView): Unit = {
     val id = imageView.getId
-    //val unit = GameState.field.units(UnitToCellMapping.getUnitIdByImageView(id))
-
   }
 
+  private def colorMovementCells(rectangle: Rectangle): Unit = rectangle.setStyle("-fx-fill:green")
 
-}
+  private def colorAttackCells(rectangle: Rectangle): Unit = rectangle.setStyle("-fx-fill:red")
 
-object GameView {
-  var gameview: FieldView = _
+  private def returnOriginalField(rectangle: Rectangle): Unit = rectangle.setStyle("Field.css")
+
+  private def deleteFigure(imageView: ImageView): Unit = imageView.setVisible(false)
 }

@@ -1,9 +1,9 @@
 package ru.mirea.thud.server.session
 
-import ru.mirea.thud.common.model.{PlayerConnectionInfo, PlayerState}
+import ru.mirea.thud.common.model.{GameField, PlayerConnectionInfo, PlayerState}
 import ru.mirea.thud.server.exception.PlayerNotFoundException
 
-case class PlayerSession(sessionId: String, firstPlayerInfo: PlayerInfo, secondPlayerInfo: PlayerInfo) {
+case class PlayerSession(sessionId: String, firstPlayerInfo: PlayerInfo, secondPlayerInfo: PlayerInfo, gameField: GameField) {
   def getPlayer(id: String): PlayerInfo = if (id == firstPlayerInfo.state.id) firstPlayerInfo
   else if (id == secondPlayerInfo.state.id) secondPlayerInfo
   else throw new PlayerNotFoundException(s"Player with id = '$id' was not found")

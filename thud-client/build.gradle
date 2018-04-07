@@ -1,4 +1,5 @@
 dependencies {
     compile project(':thud-common')
     compile group: 'org.scalafx', name: 'scalafx_2.12', version: '8.0.144-R12'
+    compile group: 'org.scalafx', name: 'scalafxml-core_2.10', version: '0.1'
 }

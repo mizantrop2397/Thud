@@ -1,11 +1,11 @@
 package ru.mirea.thud.client.view
 
-import java.io.File
 import java.net.URL
 import java.util.ResourceBundle
 
 import javafx.scene.{control => jfxsc}
-import javafx.{event => jfxe, fxml => jfxf, scene => jfxs}
+import javafx.{event => jfxe, fxml => jfxf}
+import ru.mirea.thud.client.loader.ViewLoader.loadWinNotificationDialog
 import scalafx.Includes._
 import scalafx.scene.Scene
 import scalafx.stage.Stage
@@ -17,11 +17,9 @@ class WinView extends jfxf.Initializable {
   @jfxf.FXML private var totalScore: jfxsc.Label = _
 
   def showWinnerDialog(): Unit = {
-    val resourcePath = "C:\\Users\\Анастасия\\Downloads\\Thud-master\\thud-client\\src\\resources"
-    val loader: jfxs.Parent = jfxf.FXMLLoader.load(new File(s"$resourcePath\\fxml\\WinNotificationDialog.fxml").toURI.toURL)
     dialogStage = new Stage() {
       title = "Winner dialog"
-      scene = new Scene(loader)
+      scene = new Scene(loadWinNotificationDialog())
       resizable = false
     }
     WinStage.view = this

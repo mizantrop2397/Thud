@@ -5,6 +5,8 @@ import java.util.ResourceBundle
 
 import javafx.scene.{control => jfxsc}
 import javafx.{event => jfxe, fxml => jfxf}
+import ru.mirea.thud.client.controller.HelpViewController.showHelpView
+import ru.mirea.thud.client.controller.StartViewController._
 
 
 class StartView extends jfxf.Initializable {
@@ -15,28 +17,19 @@ class StartView extends jfxf.Initializable {
 
   override def initialize(location: URL, resources: ResourceBundle): Unit = {
     playerNameField.setText("")
+    viewLoaded(this)
   }
 
   @jfxf.FXML private def startGameAction(event: jfxe.ActionEvent) {
-    System.out.println("Looking for an opponent")
     if (playerNameField.getText().equals("")) {
       errorText.setVisible(true)
+      return
     }
-    else {
-      errorText.setVisible(false)
-      startGameButton.setVisible(false)
-      lookingOpponentLabel.setVisible(true)
-      /*Отправка сообщения на сервер*/
-      // ThudGame.gameController ! PlayerConnectionServerMessage(PlayerConnectionInfo(playerNameField.getText, remoteConfig.getString("hostname"), remoteConfig.getInt("port")))
-      Main.stage.close()
-      val fieldView = new FieldView
-      fieldView.showStartField()
-
-    }
+    errorText.setVisible(false)
+    startGameButton.setVisible(false)
+    lookingOpponentLabel.setVisible(true)
+    startWaitingEnemy(playerNameField.getText)
   }
 
-  @jfxf.FXML private def showHelpButton(event: jfxe.ActionEvent) {
-    val help = new HelpView
-    help.showHelpDialog()
-  }
+  @jfxf.FXML private def showHelpButton(event: jfxe.ActionEvent): Unit = showHelpView()
 }

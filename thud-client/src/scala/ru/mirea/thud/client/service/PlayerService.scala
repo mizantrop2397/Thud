@@ -11,12 +11,12 @@ import ru.mirea.thud.common.constants.FieldCellType._
 import ru.mirea.thud.common.model.messages.PlayerIdentifiers
 import ru.mirea.thud.common.model.messages.ToClientMessages.SessionCreatedMessage
 import ru.mirea.thud.common.model.messages.ToServerMessages.MoveFiguresMessage
-import ru.mirea.thud.common.model.{FieldUnit, PlayerState}
+import ru.mirea.thud.common.model.{FieldUnit, GameField, PlayerState}
 import scalafx.application.Platform.runLater
 
 class PlayerService extends Actor {
   override def receive: Receive = {
-    case SessionCreatedMessage(playerState, enemyPlayerState) => startGame(playerState, enemyPlayerState)
+    case SessionCreatedMessage(field, playerState, enemyPlayerState) => startGame(field, playerState, enemyPlayerState)
     case CalculateMovementSchemeMessage(unit) => calculateMovement(unit)
     case PerformMovementMessage(unit, newCell) => performMovement(unit, newCell)
     case PerformAttackMessage(attackedUnit) => performAttack(attackedUnit)
@@ -37,14 +37,15 @@ class PlayerService extends Actor {
     gameService ! MoveFiguresMessage(PlayerIdentifiers(GameState.playerState.sessionId, GameState.playerState.id), unit, newCell)
   }
 
-  private def calculateMovement(unit: FieldUnit): Unit = {
-    unit.cellType match {
-      case DWARF => DwarfService.calculateMovement(unit)
-      case TROLL => TrollService.calculateTrollMovement(unit)
-    }
+  private def calculateMovement(unit: FieldUnit): Unit = unit.cellType match {
+    case DWARF => DwarfService.calculateMovement(unit)
+    case TROLL => TrollService.calculateTrollMovement(unit)
+    case EMPTY =>
   }
 
-  private def startGame(playerState: PlayerState, enemyPlayerState: PlayerState): Unit = {
+
+  private def startGame(field: GameField, playerState: PlayerState, enemyPlayerState: PlayerState): Unit = {
+    GameState.field = field
     GameState.playerState = playerState
     GameState.enemyPlayerState = enemyPlayerState
     runLater {

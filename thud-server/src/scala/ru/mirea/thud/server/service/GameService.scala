@@ -1,4 +1,4 @@
-package ru.mirea.thud.server.controller
+package ru.mirea.thud.server.service
 
 import java.util
 import java.util.UUID.randomUUID
@@ -10,9 +10,10 @@ import ru.mirea.thud.common.constants.PlayerRole._
 import ru.mirea.thud.common.model.messages.PlayerIdentifiers
 import ru.mirea.thud.common.model.messages.ToClientMessages.{DrawOfferingClientMessage, EnemyPlayerDisconnectionMessage, SessionCreatedMessage, UpdateGameField}
 import ru.mirea.thud.common.model.messages.ToServerMessages._
-import ru.mirea.thud.common.model.{FieldUnit, GameField, PlayerConnectionInfo, PlayerState}
+import ru.mirea.thud.common.model.{FieldUnit, PlayerConnectionInfo, PlayerState}
 import ru.mirea.thud.server.app.Server.clientPlayerService
 import ru.mirea.thud.server.calculator.NeighborsCalculator.calculateNeighbors
+import ru.mirea.thud.server.generator.GameFieldGenerator.generateDefaultField
 import ru.mirea.thud.server.session.{PlayerInfo, PlayerSession}
 
 import scala.collection.JavaConverters._
@@ -45,9 +46,10 @@ class GameService extends Actor {
     val newPlayerId = randomUUID().toString
     val newPlayerRole = if (waitingPlayerRole == TROLL) DWARF else TROLL
     val newPlayerState = PlayerState(sessionId, newPlayerId, newPlayerInfo.name, 0, newPlayerRole)
-    sessions += sessionId -> PlayerSession(sessionId, PlayerInfo(waitingPlayerInfo, waitingPlayerState), PlayerInfo(newPlayerInfo, newPlayerState), GameField())
-    clientPlayerService(waitingPlayerInfo.port, waitingPlayerInfo.host) ! SessionCreatedMessage(waitingPlayerState, newPlayerState)
-    clientPlayerService(newPlayerInfo.port, newPlayerInfo.host) ! SessionCreatedMessage(newPlayerState, waitingPlayerState)
+    val field = generateDefaultField()
+    sessions += sessionId -> PlayerSession(sessionId, PlayerInfo(waitingPlayerInfo, waitingPlayerState), PlayerInfo(newPlayerInfo, newPlayerState), field)
+    clientPlayerService(waitingPlayerInfo.port, waitingPlayerInfo.host) ! SessionCreatedMessage(field, waitingPlayerState, newPlayerState)
+    clientPlayerService(newPlayerInfo.port, newPlayerInfo.host) ! SessionCreatedMessage(field, newPlayerState, waitingPlayerState)
   }
 
   private def offerDrawToEnemyPlayer(identifiers: PlayerIdentifiers): Unit = {
@@ -64,18 +66,19 @@ class GameService extends Actor {
   }
 
   private def moveFigures(identifiers: PlayerIdentifiers, fromCell: FieldUnit, toCell: FieldUnit): Unit = {
+    val session = sessions(identifiers.sessionId)
     fromCell.neighbors remove fromCell.neighbors.indexWhere(neighbor => neighbor == fromCell)
-    calculateNeighbors(toCell) foreach { neighbor =>
+    calculateNeighbors(toCell, session.gameField) foreach { neighbor =>
       toCell.neighbors += neighbor
       neighbor.neighbors += toCell
     }
-    val player = sessions(identifiers.sessionId) getPlayer identifiers.playerId connectionInfo
-    val enemy = sessions(identifiers.sessionId) getEnemyPlayer identifiers.playerId connectionInfo
+    val player = session getPlayer identifiers.playerId connectionInfo
+    val enemy = session getEnemyPlayer identifiers.playerId connectionInfo
 
 //    gameField.units(fromCell.location) = fromCell
 //    gameField.units(toCell.location) = toCell
 //    clientPlayerService(player.port, player.host) ! UpdateGameField(gameField)
-    clientPlayerService(enemy.port, enemy.host) ! UpdateGameField(sessions(identifiers.sessionId).gameField)
+    clientPlayerService(enemy.port, enemy.host) ! UpdateGameField(session.gameField)
   }
 
 

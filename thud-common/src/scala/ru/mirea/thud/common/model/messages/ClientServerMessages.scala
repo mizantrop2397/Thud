@@ -6,7 +6,7 @@ import ru.mirea.thud.common.model.{FieldUnit, GameField, PlayerConnectionInfo, P
 
 object ToClientMessages {
 
-  case class SessionCreatedMessage(playerState: PlayerState, enemyPlayerState: PlayerState)
+  case class SessionCreatedMessage(gameField: GameField, playerState: PlayerState, enemyPlayerState: PlayerState)
 
   case class EnemyPlayerDisconnectionMessage()
 

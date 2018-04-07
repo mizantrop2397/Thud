@@ -1,4 +1,4 @@
-package ru.mirea.thud.client.creator
+package ru.mirea.thud.client.factory
 
 import javafx.{scene => jfxs}
 import scalafx.Includes._

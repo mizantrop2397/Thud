@@ -3,9 +3,9 @@ package ru.mirea.thud.client.controller
 import ru.mirea.thud.client.app.ThudGame.playerService
 import ru.mirea.thud.client.constants.CellTargetMode
 import ru.mirea.thud.client.controller.ExitViewController.{processExit, showExitView}
-import ru.mirea.thud.client.creator.StageFactory._
+import ru.mirea.thud.client.factory.StageFactory._
 import ru.mirea.thud.client.loader.ViewLoader.loadGameScreenViewForm
-import ru.mirea.thud.client.mapping.UnitToCellMapping.{getUnitIdByImageView, getUnitIdByRectangle}
+import ru.mirea.thud.client.mapping.UnitToCellMapping.{getRectangleId, getUnitIdByImageView, getUnitIdByRectangle}
 import ru.mirea.thud.client.model.messages.CalculateMovementSchemeMessage
 import ru.mirea.thud.client.state.GameState
 import ru.mirea.thud.client.view.FieldView
@@ -40,7 +40,13 @@ object FieldViewController {
     }
   }
 
-  def highlighCells(cells: Map[Location, CellTargetMode.Value]): Unit = {
-
+  def highlightCells(cells: Map[Location, CellTargetMode.Value]): Unit = view match {
+    case Some(v) => cells foreach { case (location, mode) =>
+      GameState.field.units find { case (_, unit) => unit.location == location } match {
+        case Some(unit) => v highlighCell(getRectangleId(unit._1), mode)
+        case None =>
+      }
+    }
+    case None =>
   }
 }

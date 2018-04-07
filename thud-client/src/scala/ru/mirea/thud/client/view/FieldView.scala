@@ -10,6 +10,8 @@ import javafx.scene.layout.VBox
 import javafx.scene.shape.Rectangle
 import javafx.scene.{control => jfxsc}
 import javafx.{event => jfxe, fxml => jfxf}
+import ru.mirea.thud.client.constants.CellTargetMode
+import ru.mirea.thud.client.constants.CellTargetMode.{ATTACK, DEFAULT, MOVE}
 import ru.mirea.thud.client.controller.FieldViewController._
 import ru.mirea.thud.client.controller.HelpViewController.showHelpView
 import ru.mirea.thud.common.model.{Location, PlayerState}
@@ -340,6 +342,14 @@ class FieldView extends jfxf.Initializable {
   private def colorMovementCells(imageView: ImageView): Unit = imageView.setStyle("-fx-fill:green")
 
   private def colorAttackCells(rectangle: Rectangle): Unit = rectangle.setStyle("-fx-fill:red")
+
+  def highlighCell(id: String, mode: CellTargetMode.Value): Unit = mode match {
+    case ATTACK => colorAttackCells(getRectangleById(id))
+    case MOVE => colorMovementCells(getRectangleById(id))
+    case DEFAULT => returnOriginalField(getRectangleById(id))
+  }
+
+  private def getRectangleById(id: String) = fieldBox.lookup(s"#$id").asInstanceOf[Rectangle]
 
   private def returnOriginalField(rectangle: Rectangle): Unit = rectangle.setStyle("Field.css")
 

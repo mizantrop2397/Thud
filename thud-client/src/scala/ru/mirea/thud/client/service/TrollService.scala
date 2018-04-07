@@ -62,25 +62,25 @@ object TrollService {
     val possibleCells = new util.ArrayList[FieldUnit]()
     (0 to 3).foreach {
       i => {
-        if (controllingUnit.neighbors.size < i) {
-          var count = 0
+        var count = 0
+        if (controllingUnit.neighbors.size >= i) {
           val neighbor = controllingUnit.neighbors(i)
-          if (isCellTroll(neighbor) && ((i < 2 && controllingUnit.neighbors(i + 2).cellType.equals(TROLL)) && (i > 2 && controllingUnit.neighbors(i - 2).cellType.equals(TROLL)))) {
+          if (isCellTroll(neighbor) && ((i < 2 && controllingUnit.neighbors(i + 2).cellType.equals(TROLL)) || (i > 2 && controllingUnit.neighbors(i - 2).cellType.equals(TROLL)))) {
             count = countLineLength(neighbor, i)
           }
-          var index = i
-          if (i < 2) {
-            index = index + 2
-          } else {
-            index = index - 2
-          }
-          (0 to count).foreach {
-            j => {
-              if (controllingUnit.neighbors(index).cellType.equals(EMPTY)) {
-                possibleCells.add(controllingUnit.neighbors(index))
-              }
-              controllingUnit.copy(controllingUnit.neighbors(index).location, controllingUnit.neighbors(index).cellType, controllingUnit.neighbors(index).neighbors)
+        }
+        var index = i
+        if (i < 2) {
+          index = index + 2
+        } else {
+          index = index - 2
+        }
+        (0 to count).foreach {
+          j => {
+            if (controllingUnit.neighbors(index).cellType.equals(EMPTY)) {
+              possibleCells add controllingUnit.neighbors(index)
             }
+            possibleCells add controllingUnit.copy(controllingUnit.neighbors(index).location, controllingUnit.neighbors(index).cellType, controllingUnit.neighbors(index).neighbors)
           }
         }
       }
@@ -89,9 +89,10 @@ object TrollService {
   }
 
   private def countLineLength(currentUnit: FieldUnit, index: Int): Int = {
+    if (currentUnit.neighbors.size < index) return 0;
     var count = 0
     if (currentUnit.neighbors(index).cellType.equals(TROLL)) {
-      count = countLineLength(currentUnit.neighbors(index), index)
+      count = countLineLength(currentUnit.neighbors(index), index + 1)
     }
     count + 1
   }

@@ -1,6 +1,6 @@
 package ru.mirea.thud.client.controller
 
-import ru.mirea.thud.client.creator.StageFactory.createStage
+import ru.mirea.thud.client.factory.StageFactory.createStage
 import ru.mirea.thud.client.loader.ViewLoader.loadHelpViewForm
 import scalafx.stage.Stage
 

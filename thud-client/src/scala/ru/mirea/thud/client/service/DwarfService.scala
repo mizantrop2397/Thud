@@ -21,8 +21,8 @@ object DwarfService {
   def calculateDwarfMovement(controllingUnit: FieldUnit): Unit = {
     cellsToHighlightAttack = checkForAttack(controllingUnit)
     cellsToHighlightMove = checkForMovement(controllingUnit)
-    val map = addToMap(cellsToHighlightAttack, ATTACK)
-    map ++ addToMap(cellsToHighlightMove, MOVE)
+    var map = addToMap(cellsToHighlightAttack, ATTACK)
+    map = map ++ addToMap(cellsToHighlightMove, MOVE)
     fieldService ! HighlightCellsMessage(map)
   }
 
@@ -55,8 +55,10 @@ object DwarfService {
       if (controllingUnit.neighbors.size >= attackDirection) {
         var cellToCheck = controllingUnit.neighbors(attackDirection)
         for (_ <- 0 to count) {
-          if (cellToCheck.cellType.equals(TROLL)) possibleCells += cellToCheck
-          cellToCheck = cellToCheck.neighbors(attackDirection)
+          if(cellToCheck != null) {
+            if (cellToCheck.cellType.equals(TROLL)) possibleCells += cellToCheck
+            cellToCheck = cellToCheck.neighbors(attackDirection)
+          }
         }
       }
     }
@@ -66,7 +68,7 @@ object DwarfService {
   private def countLineLength(currentUnit: FieldUnit, directionIndex: Int): Int = {
     var count = 0
     val cellToCheck = currentUnit.neighbors(directionIndex)
-    if (cellToCheck.cellType equals DWARF) {
+    if (cellToCheck != null && cellToCheck.cellType.equals(DWARF)) {
       count = countLineLength(cellToCheck, directionIndex)
     }
     count + 1
@@ -76,7 +78,7 @@ object DwarfService {
     val possibleCells = ListBuffer[FieldUnit]()
     for (directionIndex <- 0 to 7) {
       var neighbor = controllingUnit.neighbors(directionIndex)
-      while (isCellEmpty(neighbor)) {
+      while (neighbor != null &&  isCellEmpty(neighbor)) {
         possibleCells += neighbor
         neighbor = neighbor.neighbors(directionIndex)
       }

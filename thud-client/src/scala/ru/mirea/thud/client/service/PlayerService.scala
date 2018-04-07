@@ -10,6 +10,7 @@ import ru.mirea.thud.client.service.DwarfService.{calculateDwarfMovement, getDwa
 import ru.mirea.thud.client.service.TrollService.{calculateTrollMovement, getTrollCellsToHighlightAttack, getTrollCellsToHighlightMove, processTrollAttack}
 import ru.mirea.thud.client.state.GameState
 import ru.mirea.thud.common.constants.FieldCellType._
+import ru.mirea.thud.common.constants.PlayerRole
 import ru.mirea.thud.common.model.messages.PlayerIdentifiers
 import ru.mirea.thud.common.model.messages.ToClientMessages.SessionCreatedMessage
 import ru.mirea.thud.common.model.messages.ToServerMessages.MoveFiguresMessage
@@ -40,8 +41,8 @@ class PlayerService extends Actor {
   }
 
   private def calculateMovement(unit: FieldUnit): Unit = unit.cellType match {
-    case DWARF => calculateDwarfMovement(unit)
-    case TROLL => calculateTrollMovement(unit)
+    case DWARF => if(GameState.playerState.role == PlayerRole.DWARF) calculateDwarfMovement(unit)
+    case TROLL => if(GameState.playerState.role == PlayerRole.TROLL) calculateTrollMovement(unit)
   }
 
 
